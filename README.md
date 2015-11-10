@@ -1,4 +1,4 @@
-# PI-Connector-for-UFL-Examples
+# PI-Connector-for-UFL-Samples
 
 Documentation and supporting files to demonstrate usage of the PI Connector for UFL
 
