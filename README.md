@@ -9,6 +9,7 @@ Documentation and supporting files to demonstrate usage of the PI Connector for 
 
 ##Getting Started
 You will need a development/test PI System, and the PI Connector for UFL (or beta if pre-release).
+The file [PI Connector for UFL REST samples](PI Connector for UFL REST samples.pdf) provides additional details about the samples.
 
 ##Licensing
 
