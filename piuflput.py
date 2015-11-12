@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" piufl.py
+""" piuflput.py
 
    Copyright 2015 OSIsoft, LLC.
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,7 @@ Parameters:
     file - Data file to be processed by the Connector 
 	
 Example:
-    python piufl.py https://<server>:5460/connectordata/devices devices.csv
+    python piuflput.py https://<server>:5460/connectordata/value value.csv
 
 	"""
 import argparse

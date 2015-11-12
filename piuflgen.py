@@ -13,13 +13,13 @@
 
 Generate sample data to publish to the PI Connector for UFL REST endpoint
 
-The syntax is: python piuflgen.py file
+The syntax is: python piuflgen.py format
 
 Parameters:
-    file - Output file for sample data
+    format - Specify the sample format to generate. Valid formats are: value or values.
 	
 Example:
-    python piuflgen.py
+    python piuflgen.py values
 
 	"""
 import argparse
@@ -30,15 +30,26 @@ import random
 
 def checker(x):
     return {
-        '1': 1,
-        '2': 2,
-    }.get(x, 1)
+        'value': "value",
+        'values': "values"
+    }.get(x, 0)
 
 parser = argparse.ArgumentParser(description='Create sample data for use with PI Connector for UFL')
-parser.add_argument("-s","--selectsample",
-                        help='specify sample to generate')
+parser.add_argument("format",
+                        help='specify sample format to generate. select one of: value, values')
 args = parser.parse_args()
 
+### check for valid format argument
+
+if not(args.format):
+	parser.print_help()
+	parser.exit(status=1)
+	
+sample = checker(args.format)
+if sample == 0:
+	parser.print_help()
+	parser.exit(status=1)
+	
 ### define devices and sensors for sample dataset
 
 devices = ["00-00-00-b2-11-1a",
@@ -55,25 +66,10 @@ timestamp = timestamp - datetime.timedelta(minutes=1)
 
 ### Process optional arguments
 
-if not (args.selectsample):
-	sample = 1
-
-sample = checker(args.selectsample)
-
-
-### print out sample records - one record per asset
-	
-if sample == 1:
-	for device in devices:
-		print("{},{},{},{},{}".format(device,
-							timestamp.strftime("%Y-%m-%dT%H:%M:%SZ"),
-							random.randint(1000, 3450),
-							random.randint(35, 120),
-							random.randint(1000, 3450)))
 
 ### print out sample records - one record per sensor value
 							
-if sample == 2:
+if sample == "value":
 	for device in devices:
 		for sensor in sensors:
 			print("{}:{},{},{}".format(device,
@@ -81,3 +77,15 @@ if sample == 2:
 							timestamp.strftime("%Y-%m-%dT%H:%M:%SZ"),
 							random.randint(1000, 3450)))
 		timestamp = timestamp + datetime.timedelta(seconds=1)
+		
+### print out sample records - one record per asset
+	
+if sample == "values":
+	for device in devices:
+		print("{},{},{},{},{}".format(device,
+							timestamp.strftime("%Y-%m-%dT%H:%M:%SZ"),
+							random.randint(1000, 3450),
+							random.randint(35, 120),
+							random.randint(1000, 3450)))
+
+
