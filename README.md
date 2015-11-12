@@ -1,10 +1,12 @@
 # PI-Connector-for-UFL-Samples
 
-Documentation and supporting files to demonstrate usage of the PI Connector for UFL.
+These samples show how to get started with the PI Connector for UFL beta REST endpoint feature.
+
+If you would like to try the beta please contact your OSIsoft account manager.
 
 ## Contents
 
-1. Details on the use of the PI Connector for UFL REST endpoint
+1. Details on how to use of the PI Connector for UFL REST endpoint
 2. Python sample to create a data file and "PUT" it to the UFL REST endpoint.
 
 ##Getting Started
