@@ -28,7 +28,7 @@ import datetime
 import random
 
 
-# Check for a valid argument
+# Script documentation and argument checking
 description = 'Create sample data for use with PI Connector for UFL'
 parser = argparse.ArgumentParser(description=description)
 parser.add_argument('format',
@@ -43,16 +43,15 @@ except KeyError:
     parser.exit(status=1)
 
 # define devices and sensors for sample dataset
-devices = ['00-00-00-b2-11-1a',
+devices = ('00-00-00-b2-11-1a',
            '00-00-00-b2-11-1b',
            '00-00-00-b2-11-1c',
-           '00-00-00-b2-11-1d']
+           '00-00-00-b2-11-1d')
 
-sensors = ['rpm', 'temperature', 'vibration']
+sensors = ('rpm', 'temperature', 'vibration')
 
 # Get the time a minute ago
-timestamp = datetime.datetime.utcnow()
-timestamp = timestamp - datetime.timedelta(minutes=1)
+timestamp = datetime.datetime.utcnow() - datetime.timedelta(minutes=1)
 
 # print out sample records - one record per sensor value
 timeFormat = '%Y-%m-%dT%H:%M:%SZ'
@@ -63,7 +62,7 @@ if sample == 'value':
                                        sensor,
                                        timestamp.strftime(timeFormat),
                                        random.randint(1000, 3450)))
-        timestamp = timestamp + datetime.timedelta(seconds=1)
+        timestamp += datetime.timedelta(seconds=1)
 
 # print out sample records - one record per asset
 if sample == 'values':
