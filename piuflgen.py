@@ -63,9 +63,6 @@ sensors = ['rpm', 'temperature', 'vibration']
 timestamp = datetime.datetime.utcnow()
 timestamp = timestamp - datetime.timedelta(minutes=1)
 
-# Process optional arguments
-
-
 # print out sample records - one record per sensor value
 
 timeFormat = '%Y-%m-%dT%H:%M:%SZ'
