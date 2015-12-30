@@ -21,7 +21,6 @@ Parameters:
 
 Example:
     python piuflgen.py values
-
 """
 
 import argparse
@@ -37,12 +36,6 @@ parser.add_argument('format',
                          'Select one of: value, values')
 args = parser.parse_args()
 
-# check for valid format argument
-
-if not(args.format):
-    parser.print_help()
-    parser.exit(status=1)
-
 try:
     sample = {'value': 'value', 'values': 'values'}[args.format]
 except KeyError:
@@ -50,7 +43,6 @@ except KeyError:
     parser.exit(status=1)
 
 # define devices and sensors for sample dataset
-
 devices = ['00-00-00-b2-11-1a',
            '00-00-00-b2-11-1b',
            '00-00-00-b2-11-1c',
@@ -59,12 +51,10 @@ devices = ['00-00-00-b2-11-1a',
 sensors = ['rpm', 'temperature', 'vibration']
 
 # Get the time a minute ago
-
 timestamp = datetime.datetime.utcnow()
 timestamp = timestamp - datetime.timedelta(minutes=1)
 
 # print out sample records - one record per sensor value
-
 timeFormat = '%Y-%m-%dT%H:%M:%SZ'
 if sample == 'value':
     for device in devices:
@@ -76,7 +66,6 @@ if sample == 'value':
         timestamp = timestamp + datetime.timedelta(seconds=1)
 
 # print out sample records - one record per asset
-
 if sample == 'values':
     for device in devices:
         print('{},{},{},{},{}'.format(device,
