@@ -16,76 +16,77 @@ Generate sample data to publish to the PI Connector for UFL REST endpoint
 The syntax is: python piuflgen.py format
 
 Parameters:
-    format - Specify the sample format to generate. Valid formats are: value or values.
-	
+    format - Specify the sample format to generate.
+    Valid formats are: value or values.
+
 Example:
     python piuflgen.py values
 
-	"""
+"""
+
 import argparse
 import datetime
 import random
 
-### Check for a valid argument
 
 def checker(x):
-    return {
-        'value': "value",
-        'values': "values"
-    }.get(x, 0)
+    return {'value': "value",
+            'values': "values"}.get(x, 0)
 
-parser = argparse.ArgumentParser(description='Create sample data for use with PI Connector for UFL')
-parser.add_argument("format",
-                        help='specify sample format to generate. select one of: value, values')
+# Check for a valid argument
+description = 'Create sample data for use with PI Connector for UFL'
+parser = argparse.ArgumentParser(description=description)
+parser.add_argument('format',
+                    help='specify sample format to generate. '
+                         'Select one of: value, values')
 args = parser.parse_args()
 
-### check for valid format argument
+# check for valid format argument
 
 if not(args.format):
-	parser.print_help()
-	parser.exit(status=1)
-	
+    parser.print_help()
+    parser.exit(status=1)
+
 sample = checker(args.format)
 if sample == 0:
-	parser.print_help()
-	parser.exit(status=1)
-	
-### define devices and sensors for sample dataset
+    parser.print_help()
+    parser.exit(status=1)
+
+# define devices and sensors for sample dataset
 
 devices = ["00-00-00-b2-11-1a",
-		   "00-00-00-b2-11-1b",
-		   "00-00-00-b2-11-1c",
-		   "00-00-00-b2-11-1d"]
+           "00-00-00-b2-11-1b",
+           "00-00-00-b2-11-1c",
+           "00-00-00-b2-11-1d"]
 
 sensors = ["rpm", "temperature", "vibration"]
 
-### Get the time a minute ago
+# Get the time a minute ago
 
 timestamp = datetime.datetime.utcnow()
 timestamp = timestamp - datetime.timedelta(minutes=1)
 
-### Process optional arguments
+# Process optional arguments
 
 
-### print out sample records - one record per sensor value
-							
+# print out sample records - one record per sensor value
+
+timeFormat = "%Y-%m-%dT%H:%M:%SZ"
 if sample == "value":
-	for device in devices:
-		for sensor in sensors:
-			print("{}:{},{},{}".format(device,
-							sensor,
-							timestamp.strftime("%Y-%m-%dT%H:%M:%SZ"),
-							random.randint(1000, 3450)))
-		timestamp = timestamp + datetime.timedelta(seconds=1)
-		
-### print out sample records - one record per asset
-	
+    for device in devices:
+        for sensor in sensors:
+            print("{}:{},{},{}".format(device,
+                                       sensor,
+                                       timestamp.strftime(timeFormat),
+                                       random.randint(1000, 3450)))
+        timestamp = timestamp + datetime.timedelta(seconds=1)
+
+# print out sample records - one record per asset
+
 if sample == "values":
-	for device in devices:
-		print("{},{},{},{},{}".format(device,
-							timestamp.strftime("%Y-%m-%dT%H:%M:%SZ"),
-							random.randint(1000, 3450),
-							random.randint(35, 120),
-							random.randint(1000, 3450)))
-
-
+    for device in devices:
+        print("{},{},{},{},{}".format(device,
+                                      timestamp.strftime(timeFormat),
+                                      random.randint(1000, 3450),
+                                      random.randint(35, 120),
+                                      random.randint(1000, 3450)))
