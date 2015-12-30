@@ -29,10 +29,6 @@ import datetime
 import random
 
 
-def checker(x):
-    return {'value': "value",
-            'values': "values"}.get(x, 0)
-
 # Check for a valid argument
 description = 'Create sample data for use with PI Connector for UFL'
 parser = argparse.ArgumentParser(description=description)
@@ -47,19 +43,20 @@ if not(args.format):
     parser.print_help()
     parser.exit(status=1)
 
-sample = checker(args.format)
-if sample == 0:
+try:
+    sample = {'value': 'value', 'values': 'values'}[args.format]
+except KeyError:
     parser.print_help()
     parser.exit(status=1)
 
 # define devices and sensors for sample dataset
 
-devices = ["00-00-00-b2-11-1a",
-           "00-00-00-b2-11-1b",
-           "00-00-00-b2-11-1c",
-           "00-00-00-b2-11-1d"]
+devices = ['00-00-00-b2-11-1a',
+           '00-00-00-b2-11-1b',
+           '00-00-00-b2-11-1c',
+           '00-00-00-b2-11-1d']
 
-sensors = ["rpm", "temperature", "vibration"]
+sensors = ['rpm', 'temperature', 'vibration']
 
 # Get the time a minute ago
 
@@ -71,11 +68,11 @@ timestamp = timestamp - datetime.timedelta(minutes=1)
 
 # print out sample records - one record per sensor value
 
-timeFormat = "%Y-%m-%dT%H:%M:%SZ"
-if sample == "value":
+timeFormat = '%Y-%m-%dT%H:%M:%SZ'
+if sample == 'value':
     for device in devices:
         for sensor in sensors:
-            print("{}:{},{},{}".format(device,
+            print('{}:{},{},{}'.format(device,
                                        sensor,
                                        timestamp.strftime(timeFormat),
                                        random.randint(1000, 3450)))
@@ -83,9 +80,9 @@ if sample == "value":
 
 # print out sample records - one record per asset
 
-if sample == "values":
+if sample == 'values':
     for device in devices:
-        print("{},{},{},{},{}".format(device,
+        print('{},{},{},{},{}'.format(device,
                                       timestamp.strftime(timeFormat),
                                       random.randint(1000, 3450),
                                       random.randint(35, 120),
