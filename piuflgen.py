@@ -28,33 +28,33 @@ import datetime
 import random
 
 
-# Check for a valid argument
-description = 'Create sample data for use with PI Connector for UFL'
-parser = argparse.ArgumentParser(description=description)
+# Verify that the format is either value or values
+class CheckArgumentAction(argparse.Action):
+    def __call__(self, parser, namespace, values, option_string=None):
+        if values not in ('value', 'values'):
+            parser.print_help()
+            parser.exit(status=1)
+        setattr(namespace, self.dest, values)
+
+parser = argparse.ArgumentParser()
+parser.description = 'Create sample data for use with PI Connector for UFL'
 parser.add_argument('format',
                     help='specify sample format to generate. '
-                         'Select one of: value, values')
-args = parser.parse_args()
+                         'Select one of: value, values',
+                    action=CheckArgumentAction)
+sample = parser.parse_args().format
 
-try:
-    sample = {'value': 'value', 'values': 'values'}[args.format]
-except KeyError:
-    parser.print_help()
-    parser.exit(status=1)
-
-# define devices and sensors for sample dataset
-devices = ['00-00-00-b2-11-1a',
+# all devices and sensors for sample dataset
+devices = ('00-00-00-b2-11-1a',
            '00-00-00-b2-11-1b',
            '00-00-00-b2-11-1c',
-           '00-00-00-b2-11-1d']
+           '00-00-00-b2-11-1d')
 
-sensors = ['rpm', 'temperature', 'vibration']
+sensors = ('rpm', 'temperature', 'vibration')
 
-# Get the time a minute ago
-timestamp = datetime.datetime.utcnow()
-timestamp = timestamp - datetime.timedelta(minutes=1)
+timestamp = datetime.datetime.utcnow() - datetime.timedelta(minutes=1)
 
-# print out sample records - one record per sensor value
+# output sample records - either one record per sensor or one record per device
 timeFormat = '%Y-%m-%dT%H:%M:%SZ'
 if sample == 'value':
     for device in devices:
@@ -63,10 +63,8 @@ if sample == 'value':
                                        sensor,
                                        timestamp.strftime(timeFormat),
                                        random.randint(1000, 3450)))
-        timestamp = timestamp + datetime.timedelta(seconds=1)
-
-# print out sample records - one record per asset
-if sample == 'values':
+        timestamp += datetime.timedelta(seconds=1)
+elif sample == 'values':
     for device in devices:
         print('{},{},{},{},{}'.format(device,
                                       timestamp.strftime(timeFormat),
