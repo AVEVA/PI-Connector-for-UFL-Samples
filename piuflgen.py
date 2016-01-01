@@ -48,7 +48,8 @@ sample = parser.parse_args().format
 devices = ('00-00-00-b2-11-1a',
            '00-00-00-b2-11-1b',
            '00-00-00-b2-11-1c',
-           '00-00-00-b2-11-1d')
+           '00-00-00-b2-11-1d',
+           '00-00-00-b2-11-1e')
 
 sensors = ('rpm', 'temperature', 'vibration')
 
