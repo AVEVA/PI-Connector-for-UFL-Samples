@@ -55,6 +55,10 @@ sensors = ('rpm', 'temperature', 'vibration')
 
 timestamp = datetime.datetime.utcnow() - datetime.timedelta(minutes=1)
 
+# specify the newline character, by default the connector expects
+# the CLRF style, that is the ascii character 13 followed by ascii chracter 10
+newline = chr(13) + chr(10)
+
 # output sample records - either one record per sensor or one record per device
 timeFormat = '%Y-%m-%dT%H:%M:%SZ'
 if sample == 'value':
@@ -63,7 +67,8 @@ if sample == 'value':
             print('{}:{},{},{}'.format(device,
                                        sensor,
                                        timestamp.strftime(timeFormat),
-                                       random.randint(1000, 3450)))
+                                       random.randint(1000, 3450)),
+                  end=newline)
         timestamp += datetime.timedelta(seconds=1)
 elif sample == 'values':
     for device in devices:
@@ -71,4 +76,5 @@ elif sample == 'values':
                                       timestamp.strftime(timeFormat),
                                       random.randint(1000, 3450),
                                       random.randint(35, 120),
-                                      random.randint(1000, 3450)))
+                                      random.randint(1000, 3450)),
+              end=newline)
