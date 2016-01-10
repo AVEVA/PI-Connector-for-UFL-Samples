@@ -36,11 +36,13 @@ parser.add_argument('resturl', help='REST endpoint address')
 parser.add_argument('file', help='Data file to be Put-ed')
 args = parser.parse_args()
 
-# Session information, set the username and password
+# In the Session information, set the username and password as specified in
+# the connector configuration page
+# If basic authentification is not used, use an emptry string for both
 s = requests.session()
 s.auth = ('username', 'password')
 
-# Read the file contents and put
+# Read the file contents and send the content to the connector
 with open(args.file, 'r') as f:
     data = ''.join(f.readlines())
     request = s.put(args.resturl, data=data, verify=False)
