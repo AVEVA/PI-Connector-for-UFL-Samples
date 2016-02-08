@@ -27,6 +27,9 @@ Example:
 import argparse
 
 import requests
+# this line is not required if a trusted certificated
+# is used to replace the self signed certificate generated
+# by the PI connector for UFl
 requests.packages.urllib3.disable_warnings()
 
 # Process arguments
@@ -45,6 +48,7 @@ s.auth = ('username', 'password')
 # Read the file contents and send the content to the connector
 with open(args.file, 'r') as f:
     data = ''.join(f.readlines())
+    # replace verify=False with verify=True if the certificate was replaced
     request = s.put(args.resturl, data=data, verify=False)
     print(request.text)
     print(request.status_code)
