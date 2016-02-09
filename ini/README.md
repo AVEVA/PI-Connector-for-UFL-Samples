@@ -1,12 +1,10 @@
-# PI-Connector-for-UFL-Samples
+# PI-Connector-for-UFL-Samples - INI
 
 These samples show how to get started with the PI Connector for UFL REST endpoint feature.
 
 ## Contents
 
-* Details on how to use of the PI Connector for UFL REST endpoint.
-* Python sample to create a data file and "PUT" it to the UFL REST endpoint, which can be find in the Python directory.
-* Sample ini files that can be find in the INI directory.
+* generate.py is one example showing how to automatically generate an ini file base on a list of tags.
 
 ##Getting Started
 
