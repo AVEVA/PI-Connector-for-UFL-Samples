@@ -25,6 +25,7 @@ Example:
 """
 
 import argparse
+import getpass
 
 import requests
 # this line is not required if a trusted certificated
@@ -39,16 +40,38 @@ parser.add_argument('resturl', help='REST endpoint address')
 parser.add_argument('file', help='Data file to be Put-ed')
 args = parser.parse_args()
 
+s = requests.session()
 # In the Session information, set the username and password as specified in
 # the connector configuration page
-# If basic authentification is not used, use an emptry string for both
-s = requests.session()
-s.auth = ('username', 'password')
+# You can hard code the username and password, if not, you will be prompted to enter them
+# If anonymous authentification is used, then use an emptry string for both
+_username = None
+_password = None
+
+def password():
+	global _password
+	if _password is None:
+		# Store the password so that this method is only called once
+		_password = getpass.getpass('please type in your password: ')
+	return _password
+
+def username():
+	global _username
+	if _username is None:
+		# Store the username so that this method is only called once
+		_username = getpass.getpass('please type in your username: ')
+	return _username
+
+s.auth = (username(), password())
 
 # Read the file contents and send the content to the connector
 with open(args.file, 'r') as f:
     data = ''.join(f.readlines())
     # replace verify=False with verify=True if the certificate was replaced
-    request = s.put(args.resturl, data=data, verify=False)
-    print(request.text)
-    print(request.status_code)
+    response = s.put(args.resturl, data=data, verify=False)
+    if response.status_code != 200:
+        print('The following error has occured:')
+        print(response.status_code, response.reason)
+    else:
+        print('The data was sent successfully')
+        print('If parsing errors have occured, they will be listed in the event logs')
