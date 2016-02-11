@@ -75,6 +75,9 @@ with open(args.file, 'r') as f:
     data = ''.join(f.readlines())
     # remove verify=False if the certificate was replaced
     response = s.put(args.resturl, data=data, verify=False)
+    # If instead of using the put request, you need to use the post request
+    # use the function as listed below
+    # response = s.post(args.resturl + '/post', data=data, verify=False)
     if response.status_code != 200:
         print('The following error has occured:')
         print(response.status_code, response.reason)
