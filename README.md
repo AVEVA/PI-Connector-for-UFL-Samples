@@ -14,7 +14,7 @@ You will need a development/test PI System and the PI Connector for UFL (the sam
 
 ##Licensing
 
-Copyright 2015 OSIsoft, LLC.
+Copyright 2016 OSIsoft, LLC.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
