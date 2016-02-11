@@ -5,18 +5,17 @@ These samples show how to get started with the PI Connector for UFL REST endpoin
 ## Contents
 
 * Details on how to use of the PI Connector for UFL REST endpoint.
-* Python3 samples to create a data file and then use the a HTTP Put or Push command to send the data file to the UFL REST endpoint.
+* Python samples to create a data file and then use the a HTTP Put or Push command to send the data file to the UFL REST endpoint.
 
 ## Getting Started
 
 You will need a development/test PI System and the PI Connector for UFL (the samples were tested with version 1.0.0.41).
-The scripts have been tested with Pyhon 3.5.1 and come in two versions. 
+The scripts to send data have been tested with Pyhon 3.5.1 and come in two versions. 
 * piuflput.py - uses the Python requests module. The request module simplifies a lot the sending and receiving of http requests and it is strongly encouraged to use it(instal requests using: pip install requests or apt-get install python-requests)
 * piuflput_urllib.py - uses only Python modules that are part of a standard install of Python3.
-The file [PI Connector for UFL REST samples](PI Connector for UFL REST samples.pdf) provides additional details about the samples.
 
 ## Tutorial on how to use these scripts
-1. Open the PI Connector for UFL admin page by opening a browser and visiting: https://<servername>:<port>/admin/ui/ .
+1. Open the PI Connector for UFL admin page by opening a browser and visiting: [https://<servername>:<port>/admin/ui/](https://<servername>:<port>/admin/ui/).
 2. Specify a PI Data Archive and create a new data source.
 3. Upload value.ini as the Config File and select a username and password.
 4. Make the following choices:
@@ -29,11 +28,12 @@ The file [PI Connector for UFL REST samples](PI Connector for UFL REST samples.p
 
     `python piuflput_urllib.py url value.csv`
 7. Enter the selected username and password.
-8. You can now look up, for example, that the ufl.tag 00-00-00-b2-11-1a:rpm was created at the utc time: 2015-11-13T04:05:54Z there is the value of 1968.
+8. You can now look up, for example, that the ufl.tag 00-00-00-b2-11-1a:rpm was created at the utc time: 2016-02-11T22:17:03Z there is the value of 1968.
 9. To generate more data with current timestamps you can run the command below.
 
     `python piuflgen.py value > morevalues.csv`
 10. For an other example, you can specify a PI Asset Server and re-run the previous steps using values instead of value.
+11. If you plan on expending theses examples, consider installin the request module and using the [piuflput.py](piuflput.py) example.
 
 ##Licensing
 
