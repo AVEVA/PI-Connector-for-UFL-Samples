@@ -1,6 +1,6 @@
 """ piuflput.py
 
-   Copyright 2015 OSIsoft, LLC.
+   Copyright 2016 OSIsoft, LLC.
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
@@ -21,17 +21,13 @@ Parameters:
     file - Data file to be processed by the Connector
 
 Example:
-    python piuflput.py https://<server>:5460/connectordata/value value.csv
+    python piuflput.py https://<server>:<port>/connectordata/value value.csv
 """
 
 import argparse
 import getpass
 import urllib
 import urllib.request
-
-# this line is not required if a trusted certificated
-# is used to replace the self signed certificate generated
-# by the PI connector for UFl
 
 # Process arguments
 parser = argparse.ArgumentParser()
@@ -63,7 +59,7 @@ def username():
 
 # set up authentification
 auth_handler = urllib.request.HTTPBasicAuthHandler()
-auth_handler.add_password(realm="",
+auth_handler.add_password(realm='',
                        uri=args.resturl,
                        user=username(),
                        passwd=password())
