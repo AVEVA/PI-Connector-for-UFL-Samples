@@ -49,24 +49,26 @@ args = parser.parse_args()
 s = requests.session()
 # In the Session information, set the username and password as specified in
 # the connector configuration page
-# You can hard code the username and password, if not, you will be prompted to enter them
+# You can hard code the credentials, if not, you will be prompted to enter them
 # If anonymous authentification is used, then use an emptry string for both
 _username = None
 _password = None
 
+
 def password():
-	global _password
-	if _password is None:
-		# Store the password so that this method is only called once
-		_password = getpass.getpass('please type in your password: ')
-	return _password
+    global _password
+    if _password is None:
+        # Store the password so that this method is only called once
+        _password = getpass.getpass('please type in your password: ')
+    return _password
+
 
 def username():
-	global _username
-	if _username is None:
-		# Store the username so that this method is only called once
-		_username = getpass.getpass('please type in your username: ')
-	return _username
+    global _username
+    if _username is None:
+        # Store the username so that this method is only called once
+        _username = getpass.getpass('please type in your username: ')
+    return _username
 
 s.auth = (username(), password())
 
@@ -83,4 +85,4 @@ with open(args.file, 'r') as f:
         print(response.status_code, response.reason)
     else:
         print('The data was sent successfully')
-        print('If parsing errors have occured, they will be listed in the event logs')
+        print('Check the event logs for any parsing errors')
