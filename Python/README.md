@@ -5,11 +5,14 @@ These samples show how to get started with the PI Connector for UFL REST endpoin
 ## Contents
 
 * Details on how to use of the PI Connector for UFL REST endpoint.
-* Python sample to create a data file and "PUT" it to the UFL REST endpoint.
+* Python3 samples to create a data file and then use the a HTTP Put or Push command to send the data file to the UFL REST endpoint.
 
 ##Getting Started
 
 You will need a development/test PI System and the PI Connector for UFL (the samples were tested with version 1.0.0.41).
+The scripts have been tested with Pyhon 3.5.1 and come in two versions:
+* piuflput.py - uses the Python requests module (instal using: pip install requests or apt-get install python-requests)
+* piuflput_urllib.py - uses only Python modules that are part of a standard install of Python3.
 The file [PI Connector for UFL REST samples](PI Connector for UFL REST samples.pdf) provides additional details about the samples.
 
 ##Licensing

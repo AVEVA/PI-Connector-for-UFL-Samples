@@ -1,6 +1,6 @@
 # PI-Connector-for-UFL-Samples - INI
 
-These samples show how to get started with the PI Connector for UFL REST endpoint feature.
+These samples show how to get started with the PI Connector for UFL in particular how to write ini files.
 
 ## Contents
 
@@ -9,6 +9,7 @@ These samples show how to get started with the PI Connector for UFL REST endpoin
 ##Getting Started
 
 You will need a development/test PI System and the PI Connector for UFL (the samples were tested with version 1.0.0.41).
+The Python scripts have been tested with Python 3.5.1
 
 ##Licensing
 
