@@ -13,7 +13,7 @@ The Python scripts have been tested with Python 3.5.1.
 
 ##Licensing
 
-Copyright 2015 OSIsoft, LLC.
+Copyright 2016 OSIsoft, LLC.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

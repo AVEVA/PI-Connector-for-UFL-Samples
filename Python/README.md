@@ -17,7 +17,7 @@ The file [PI Connector for UFL REST samples](PI Connector for UFL REST samples.p
 
 ## Tutorial on how to use these scripts
 1. Open the PI Connector for UFL admin page by opening a browser and visiting: https://<servername>:<port>/admin/ui/ .
-2. Create a new data source.
+2. Specify a PI Data Archive and create a new data source.
 3. Upload value.ini as the Config File and select a username and password.
 4. Make the following choices:
     * Select Rest as the Data Source Type
@@ -33,11 +33,11 @@ The file [PI Connector for UFL REST samples](PI Connector for UFL REST samples.p
 9. To generate more data with current timestamps you can run the command below.
 
     `python piuflgen.py value > morevalues.csv`
-10. For an other example, you re-run the previous steps using values instead of value.
+10. For an other example, you can specify a PI Asset Server and re-run the previous steps using values instead of value.
 
 ##Licensing
 
-Copyright 2015 OSIsoft, LLC.
+Copyright 2016 OSIsoft, LLC.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
