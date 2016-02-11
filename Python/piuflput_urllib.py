@@ -44,25 +44,25 @@ _username = None
 _password = None
 
 def password():
-	global _password
-	if _password is None:
-		# Store the password so that this method is only called once
-		_password = getpass.getpass('please type in your password: ')
-	return _password
+    global _password
+    if _password is None:
+        # Store the password so that this method is only called once
+        _password = getpass.getpass('please type in your password: ')
+    return _password
 
 def username():
-	global _username
-	if _username is None:
-		# Store the username so that this method is only called once
-		_username = getpass.getpass('please type in your username: ')
-	return _username
+    global _username
+    if _username is None:
+        # Store the username so that this method is only called once
+        _username = getpass.getpass('please type in your username: ')
+    return _username
 
 # set up authentification
 auth_handler = urllib.request.HTTPBasicAuthHandler()
 auth_handler.add_password(realm='',
-                       uri=args.resturl,
-                       user=username(),
-                       passwd=password())
+                          uri=args.resturl,
+                          user=username(),
+                          passwd=password())
 opener = urllib.request.build_opener(auth_handler)
 urllib.request.install_opener(opener)
 
