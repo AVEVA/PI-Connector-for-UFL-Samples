@@ -1,14 +1,14 @@
 # PI-Connector-for-UFL-Samples
 
-These samples show how to get started with the PI Connector for UFL REST endpoint feature.
+These samples show how to get started with the PI Connector for UFL and in particular with how to use the connector's REST endpoint feature.
 
 ## Contents
 
 * Details on how to use of the PI Connector for UFL REST endpoint.
-* Python sample to create a data file and "PUT" it to the UFL REST endpoint, which can be find in the Python directory.
+* Python samples to create data files and "PUT" it to the UFL REST endpoint, which can be find in the Python directory.
 * Sample ini files that can be find in the INI directory.
 
-##Getting Started
+## Getting Started
 
 You will need a development/test PI System and the PI Connector for UFL (the samples were tested with version 1.0.0.41).
 

@@ -12,7 +12,13 @@
    limitations under the License.
 
 This python example sends a file's contents to the PI Connector
-using the UFL REST endpoint
+using the UFL REST endpoint.
+This script requeries the Python requests module:
+http://docs.python-requests.org/en/master/
+Which can be installed using the following command:
+    pip install requests
+or, depending on your environement:
+    apt-get install python-requests
 
 The syntax is: python piufl.py REST-URL file
 
@@ -21,7 +27,7 @@ Parameters:
     file - Data file to be processed by the Connector
 
 Example:
-    python piuflput.py https://<server>:5460/connectordata/value value.csv
+    python piuflput.py https://<server>:<port>/connectordata/value value.csv
 """
 
 import argparse
@@ -67,7 +73,7 @@ s.auth = (username(), password())
 # Read the file contents and send the content to the connector
 with open(args.file, 'r') as f:
     data = ''.join(f.readlines())
-    # replace verify=False with verify=True if the certificate was replaced
+    # remove verify=False if the certificate was replaced
     response = s.put(args.resturl, data=data, verify=False)
     if response.status_code != 200:
         print('The following error has occured:')

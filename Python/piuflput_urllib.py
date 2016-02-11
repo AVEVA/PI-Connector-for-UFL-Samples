@@ -21,17 +21,13 @@ Parameters:
     file - Data file to be processed by the Connector
 
 Example:
-    python piuflput.py https://<server>:5460/connectordata/value value.csv
+    python piuflput.py https://<server>:<port>/connectordata/value value.csv
 """
 
 import argparse
 import getpass
 import urllib
 import urllib.request
-
-# this line is not required if a trusted certificated
-# is used to replace the self signed certificate generated
-# by the PI connector for UFl
 
 # Process arguments
 parser = argparse.ArgumentParser()
@@ -63,7 +59,7 @@ def username():
 
 # set up authentification
 auth_handler = urllib.request.HTTPBasicAuthHandler()
-auth_handler.add_password(realm="",
+auth_handler.add_password(realm='',
                        uri=args.resturl,
                        user=username(),
                        passwd=password())
