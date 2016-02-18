@@ -36,11 +36,11 @@ The scripts to send data have been tested with Pyhon 3.5.1 and come in two versi
 11. If you plan on expending theses examples, consider installing the request module and using the [piuflput.py](piuflput.py) example.
 12. To install the request module, you can use the following commands:
 
-`pip install requests`
+    `pip install requests`
 
  or
  
- `apt-get install python-requests`
+    `apt-get install python-requests`
 
 ##Licensing
 
