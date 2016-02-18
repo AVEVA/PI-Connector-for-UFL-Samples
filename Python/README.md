@@ -15,7 +15,7 @@ The scripts to send data have been tested with Pyhon 3.5.1 and come in two versi
 * piuflput_urllib.py - uses only Python modules that are part of a standard install of Python3.
 
 ## Tutorial on how to use these scripts
-1. Open the PI Connector for UFL admin page by opening a browser and visiting: [https://<servername>:<port>/admin/ui/](https://<servername>:<port>/admin/ui/).
+1. Open the PI Connector for UFL admin page by opening a browser and visiting: [https://{servername}:{port}/admin/ui/](https://{servername}:{port}/admin/ui/).
 2. Specify a PI Data Archive and create a new data source.
 3. Upload value.ini as the Config File and select a username and password.
 4. Make the following choices:
