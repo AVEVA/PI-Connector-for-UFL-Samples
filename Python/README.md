@@ -11,7 +11,7 @@ These samples show how to get started with the PI Connector for UFL REST endpoin
 
 You will need a development/test PI System and the PI Connector for UFL (the samples were tested with version 1.0.0.41).
 The scripts to send data have been tested with Pyhon 3.5.1 and come in two versions. 
-* piuflput.py - uses the Python requests module. The request module simplifies a lot the sending and receiving of http requests and it is strongly encouraged to use it(instal requests using: pip install requests or apt-get install python-requests)
+* piuflput.py - uses the Python requests module. The request module simplifies a lot the sending and receiving of http requests and it is strongly encouraged to use this module. 
 * piuflput_urllib.py - uses only Python modules that are part of a standard install of Python3.
 
 ## Tutorial on how to use these scripts
@@ -34,6 +34,13 @@ The scripts to send data have been tested with Pyhon 3.5.1 and come in two versi
     `python piuflgen.py value > morevalues.csv`
 10. For an other example, you can specify a PI Asset Server and re-run the previous steps using values instead of value.
 11. If you plan on expending theses examples, consider installing the request module and using the [piuflput.py](piuflput.py) example.
+12. To install the request module, you can use the following commands:
+
+`pip install requests`
+
+ or
+ 
+ `apt-get install python-requests`
 
 ##Licensing
 
