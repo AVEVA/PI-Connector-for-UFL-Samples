@@ -1,4 +1,4 @@
-# PI-Connector-for-UFL-Samples - JSON
+# PI-Connector-for-UFL-Samples - JSON - Currency
 
 These samples show how to get started with the PI Connector for UFL REST endpoint feature.
 
