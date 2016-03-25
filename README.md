@@ -4,15 +4,16 @@ These samples show how to get started with the PI Connector for UFL and in parti
 
 ## Contents
 
-* Details on how to use of the PI Connector for UFL REST endpoint.
 * Python samples to create data files and "PUT" it to the UFL REST endpoint, which can be find in the Python directory.
-* Sample ini files that can be find in the INI directory.
+* Generic sample ini files can be found in the INI directory.
+* A example of a processing and XML file used in a SOAP request is in the SOAP directory.
 
 ## Getting Started
 
 You will need a development/test PI System and the PI Connector for UFL (the samples were tested with version 1.0.0.41).
+The UFL connector will automatically create tags and elements, thus care must be taken when using these examples against a production system.
 
-##Licensing
+## Licensing
 
 Copyright 2016 OSIsoft, LLC.
 
