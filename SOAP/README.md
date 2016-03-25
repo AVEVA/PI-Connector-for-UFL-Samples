@@ -1,4 +1,4 @@
-# PI-Connector-for-UFL-Samples - PYTHON
+# PI-Connector-for-UFL-Samples - SOAP/Powershell
 
 These samples show how to get started with the PI Connector for UFL REST endpoint feature.
 

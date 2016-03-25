@@ -5,7 +5,7 @@ These samples show how to get started with the PI Connector for UFL REST endpoin
 ## Contents
 
 * Details on how to use of the PI Connector for UFL REST endpoint.
-* Python samples to create a data file and then use the a HTTP Put or Push command to send the data file to the UFL REST endpoint.
+* Python samples to create a data file and then use the a HTTP Put command to send the data file to the UFL REST endpoint.
 
 ## Getting Started
 
