@@ -1,20 +1,19 @@
-#*********************************************************************************
-# Copyright © 2016 OSIsoft, LLC All rights reserved.
-# THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION AND TRADE SECRETS OF
-# OSIsoft, LLC  USE, DISCLOSURE, OR REPRODUCTION IS PROHIBITED WITHOUT
-# THE PRIOR EXPRESSED WRITTEN PERMISSION OF OSIsoft, LLC
-# RESTRICTED RIGHTS LEGEND
-# Use, duplication, or disclosure by the Government is subject to restrictions
-# as set forth in subparagraph (c)(1)(ii) of the Rights in Technical Data and
-# Computer Software clause at DFARS 252.227.7013
-# OSIsoft, LLC
-# 777 Davis Street, Suite 250, San Leandro CA 94577
-#*********************************************************************************
+<#
+   Copyright 2016 OSIsoft, LLC.
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+#>
 
-# PI Connector for UFL REST endpoint data
-$URL = "https://W2012HRMSERVER:5462/connectordata/RESTWeather/" 
-$UserName = "user"
-$Password = "password"
+param([Parameter(Mandatory=$true)][string]$url, [string]$userName = "", [string]$password = "")
+
+# How to call the script .\SendWeatherForSFO.ps1 -url https://JLEFEBVRENEW:5460/connectordata/RESTWeather/ -userName a -password a
 
 # Getting data from a public endpoint
 $weather = New-WebServiceProxy 'http://www.webservicex.net/globalweather.asmx?WSDL'
