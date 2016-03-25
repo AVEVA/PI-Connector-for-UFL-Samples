@@ -11,15 +11,21 @@
    limitations under the License.
 #>
 
-param([Parameter(Mandatory=$true)][string]$url, [string]$userName = "", [string]$password = "")
+param([Parameter(Mandatory=$true)][string]$url, [string]$username = "", [string]$password = "")
 
-# How to call the script .\SendWeatherForSFO.ps1 -url https://JLEFEBVRENEW:5460/connectordata/RESTWeather/ -userName a -password a
+# How to call the script .\SendWeatherForSFO.ps1 -url https://JLEFEBVRENEW:5460/connectordata/RESTWeather/ -userName john -password p@ssw0rd!
 
 # Getting data from a public endpoint
+# By sending a POST request to http://www.webservicex.net/globalweather.asmx
+# That contains the SOAP body: 
+# <soap:Body><GetWeather xmlns="http://www.webserviceX.NET"><CityName>San Francisco</CityName><CountryName>United States</CountryName></GetWeather></soap:Body>
 $weather = New-WebServiceProxy 'http://www.webservicex.net/globalweather.asmx?WSDL'
 $data = $weather.GetWeather('San Francisco','United States')
-print($data)
+Write-Host "Data about to be sent:"
+Write-Host $data
 
+# Required to ignore issues with self-signed certificates.
+# Please remove if using a trusted certficated
 add-type @"
 	using System.Net;
 	using System.Security.Cryptography.X509Certificates;
@@ -35,20 +41,19 @@ add-type @"
 
 # Data needs to be converted to bytes and send in a body
 $dataBytes = [System.Text.Encoding]::UTF8.GetBytes($Data)   
-$encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes("$($UserName):$($Password)"))
+$encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes("$($userName):$($password)"))
 $basicAuthValue = "Basic $encodedCreds"
-$headers = @{
-	Authorization = $basicAuthValue
-	}
+$headers = @{ Authorization = $basicAuthValue }
 
-Try{
-	write-host "****** Sending data to the $URL endpoint *****" -ForegroundColor DarkGreen
+Try {
+	Write-Host "****** Sending data to the $URL endpoint *****" -ForegroundColor DarkGreen
 	# Using PUT HTTP request for sending data to the PI Connector for UFL REST endpoint
 	$result = Invoke-RestMethod -Method PUT -Uri "$URL" -Body $dataBytes -Headers $Headers
-	write-host "****** Success: $result ******" -ForegroundColor DarkGreen
-}Catch
-{
-	write-host "****** Sending data failed. Reason: $_ ******" -ForegroundColor Red
+	Write-Host "****** Success: $result ******" -ForegroundColor DarkGreen
 }
-write-host
-Read-Host -Prompt "Press Enter to exit..."
+Catch {
+	write-host "****** Sending data has failed. Reason: $_ ******" -ForegroundColor Red
+}
+Write-Host "See the PI Connectors windows event logs on the PI connector for UFL machine for futher details on the request."
+Write-Host
+Read-Host -Prompt "Press Enter to exit"
