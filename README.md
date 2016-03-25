@@ -6,7 +6,7 @@ These samples show how to get started with the PI Connector for UFL and in parti
 
 * Python samples to create data files and "PUT" it to the UFL REST endpoint, which can be find in the Python directory.
 * Generic sample ini files can be found in the INI directory.
-* A example of a processing and XML file used in a SOAP request is in the SOAP directory.
+* A example of a processing and XML file used in a SOAP request is in the SOAP directory, also an example of using Powershell to send data to the UFL rest endpoint.
 
 ## Getting Started
 
