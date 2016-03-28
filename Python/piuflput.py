@@ -32,6 +32,7 @@ Example:
 
 import argparse
 import getpass
+import sys
 
 import requests
 # this line is not required if a trusted certificated
@@ -81,8 +82,8 @@ with open(args.file, 'r') as f:
     # use the function as listed below
     # response = s.post(args.resturl + '/post', data=data, verify=False)
     if response.status_code != 200:
-        print('The following error has occured:')
-        print(response.status_code, response.reason)
+        print('The following error has occured:', file=sys.stderr)
+        print(response.status_code, response.reason, file=sys.stderr)
     else:
         print('The data was sent successfully')
         print('Check the event logs for any parsing errors')
