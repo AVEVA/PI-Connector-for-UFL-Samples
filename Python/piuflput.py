@@ -48,42 +48,40 @@ parser.add_argument('file', help='Data file to be Put-ed')
 args = parser.parse_args()
 
 s = requests.session()
-# In the Session information, set the username and password as specified in
-# the connector configuration page
-# You can hard code the credentials, if not, you will be prompted to enter them
-# If anonymous authentification is used, then use an emptry string for both
+# In the Session information, one needs to set the username and password
+# as specified in the connector configuration page
+# You can hard code the credentials in the variables below.
+# If not, you will be prompted to enter them at run time.
+# If anonymous authentification is used, then use can use emptry strings for both
 _username = None
 _password = None
-
-
-def password():
-    global _password
-    if _password is None:
-        # Store the password so that this method is only called once
-        _password = getpass.getpass('please type in your password: ')
-    return _password
-
 
 def username():
     global _username
     if _username is None:
-        # Store the username so that this method is only called once
-        _username = getpass.getpass('please type in your username: ')
+        _username = getpass.getpass('Username: ')
     return _username
+   
+
+def password():
+    global _password
+    if _password is None:
+        _password = getpass.getpass()
+    return _password
+
 
 s.auth = (username(), password())
 
-# Read the file contents and send the content to the connector
+# Read the file contents and send the content to the connector.
 with open(args.file, 'r') as f:
     data = ''.join(f.readlines())
-    # remove verify=False if the certificate was replaced
+    # You should remove verify=False if the certificate used is a trusted one.
     response = s.put(args.resturl, data=data, verify=False)
-    # If instead of using the put request, you need to use the post request
-    # use the function as listed below
+    # To use the Post method instead, replace the line above with the one below.
     # response = s.post(args.resturl + '/post', data=data, verify=False)
     if response.status_code != 200:
         print('The following error has occured:', file=sys.stderr)
         print(response.status_code, response.reason, file=sys.stderr)
     else:
-        print('The data was sent successfully')
-        print('Check the event logs for any parsing errors')
+        print('The data was sent successfully to the PI Connector for UFL.')
+        print('Check the "PI Connectors" event logs for any other errors processing the sent data.')
