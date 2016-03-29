@@ -30,6 +30,27 @@ The example ini file parses currency data that is public available at [http://fi
 7. Enter the specified username and password.
 8. You can now look up, for example, that the ufl.USD_to_JPY was created with today's currency exchange rate.
 
+
+## Note on the parsing of the JSON data
+
+The web service, [http://api.fixer.io/latest?base=USD](http://api.fixer.io/latest?base=USD) returns data as follows:
+
+    `{"base":"USD","date":"2016-03-24","rates":{"AUD":1.3321,"BRL":3.7041,"CAD":1.3288,"BGN":1.7535,...,"EUR":0.89654}}`
+
+So, simply one long line of data. This is tricky, but not impossible to parse using UFL. To simplify things, we can use the python json module to "pretty print" the JSON data, this is on [Line 54](https://github.com/osisoft/PI-Connector-for-UFL-Samples/blob/master/JSON/Currency/putJSONdata.py#L54) of the script. The output is now as follows:
+
+    `{
+        "base": "USD",
+        "date": "2016-03-24",
+        "rates": {
+            "AUD": 1.3321,
+            "BGN": 1.7535,
+            ...,
+            "ZAR": 15.497
+        }
+    }`
+
+
 ##Licensing
 
 Copyright 2016 OSIsoft, LLC.
