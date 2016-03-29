@@ -17,7 +17,7 @@ The script to get interact with the SOAP end point and to send the data have bee
 3. Upload WeatherWithEventFrames.ini as the Config File and select a username and password.
 4. Make the following choices:
     * Select Rest as the Data Source Type
-    * Set NewLine to <CurrentWeather>
+    * Set NewLine to `<CurrentWeather>`
     * Select UTC for Incoming TimeStamps
 5. Save the data source and reopen it. The address field will now be populated.
 6. Copy the url in the address field and navigate to the folder where the Powershell sample code is stored.
