@@ -37,7 +37,7 @@ The web service, [http://api.fixer.io/latest?base=USD](http://api.fixer.io/lates
 
     {"base":"USD","date":"2016-03-24","rates":{"AUD":1.3321,"BRL":3.7041,"CAD":1.3288,"BGN":1.7535,...,"EUR":0.89654}}
 
-So, simply one long line of data. This is tricky, but not impossible to parse using UFL. To simplify things, we can use the python json module to "pretty print" the JSON data, this is on [Line 54](https://github.com/osisoft/PI-Connector-for-UFL-Samples/blob/master/JSON/Currency/putJSONdata.py#L54) of the script. The output is now as follows:
+So, simply one long line of data. This is tricky, but not impossible to parse using UFL. To simplify things, we can use the python json module to "pretty print" the JSON data, this is on [Line 54](https://github.com/osisoft/PI-Connector-for-UFL-Samples/blob/master/JSON/Currency/putJSONdata.py#L54) of the script. The output is now as below and much easier to parse.
 
     {
         "base": "USD",
