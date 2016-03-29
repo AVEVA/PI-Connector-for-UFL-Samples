@@ -56,10 +56,6 @@ parser.add_argument('device', help='The name of the device encoded in quotes')
 parser.add_argument('sampling', help='The sampling rate in seconds')
 args = parser.parse_args()
 
-print(args.resturl)
-print(args.device)
-print(args.sampling)
-
 sys.exit()
 
 # --------------------------------------------
@@ -176,4 +172,3 @@ while (True):
     
         # Sleep until the next sample
         time.sleep(SAMPLE_INTERVAL_SECONDS)
-  
