@@ -51,12 +51,11 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 # Process arguments
 parser = argparse.ArgumentParser()
 parser.description = 'Collect data from your Dragonboard and send it to PI Connector for UFL Rest End point'
-parser.add_argument('resturl', help='REST endpoint address')
+parser.add_argument('restufl', help='REST endpoint address')
 parser.add_argument('device', help='The name of the device encoded in quotes')
 parser.add_argument('sampling', help='The sampling rate in seconds')
 args = parser.parse_args()
 
-sys.exit()
 
 # --------------------------------------------
 
@@ -69,7 +68,7 @@ DEVICE_NAME = args.device
 # --------------------------------------------
 
 # Define the target URL where data should be posted 
-TARGET_URL = args.url
+TARGET_URL = args.restufl
 
 s = requests.session()
 # In the Session information, one needs to set the username and password
@@ -135,21 +134,14 @@ while (True):
         # {"d":"cRIO9068","t":"2016-03-08T07:03:29Z","v1":0.5,"v2":0,"v3":0,"v4":0}
         # Where the first item, d, is the device identifier, the second item is the timestamp, 
         # in format yyyy-MM-ddThh:mm:ss.nnn, and the next four items, v1 through v4, are sensor names and sensor readings
-        JSONMessageStringForPOSTing = (
-	    "{" +
-            "\"" + "d" + "\"" + ":" + "\"" + DEVICE_NAME + "\"" + "," +
-            "\"" + "t" + "\"" + ":" + "\"" + currentTime + "\"" + "," +
-            "\"" + "Latitude" + "\"" + ":" + str(latitudeDegrees) + "," +
-            "\"" + "Longitude" + "\"" + ":" + str(longitudeDegrees) + "," +
-            "\"" + "CPU Usage" + "\"" + ":" + str(cpuUsage) + "," +
-            "\"" + "Disk Busy Time" + "\"" + ":" + str(diskBusyTime) + "," +
-            "\"" + "RAM In Use" + "\"" + ":" + str(memoryUsed) + "," +
-            "\"" + "RAM Total" + "\"" + ":" + str(totalMemory) + "," +
-            "\"" + "Wi-Fi Card Bits Received" + "\"" + ":" + str(WiFiRxBits) + "," +
-            "\"" + "Wi-Fi Card Bits Sent" + "\"" + ":" + str(WiFiTxBits) + 
-            "}"
-        )
 
+        d = {'d': DEVICE_NAME, 't': currentTime, 'Latitude': str(latitudeDegrees), 'Longitude': str(longitudeDegrees), 'CPU Usage': str(cpuUsage), 'Disk Busy Time':str(diskBusyTime),
+        'RAM In Use':str(memoryUsed), 'RAM Total': str(totalMemory), 'Wi-Fi Card Bits Received': str(WiFiRxBits), 'Wi-Fi Card Bits Sent':  str(WiFiTxBits)}
+        
+        data = 'H ' + ','.join(sorted(d.keys())) + '\r'
+        data += ','.join(d[key] for key in sorted(d.keys()))
+        print(data)
+        
         # Print the message, for debugging purposes, if desired
         #print(JSONMessageStringForPOSTing)
         
