@@ -26,6 +26,7 @@ Example:
 import argparse
 import getpass
 import json
+import sys
 from functools import lru_cache
 
 import requests
@@ -57,16 +58,30 @@ s = requests.session()
 s.auth = (username(), password())
 
 def getData(url):
+    # Being way to careful when checking for failure
     try:
         response = requests.get(url=url)
-        return json.dumps(response.json(), indent=4, sort_keys=True)
-    except:
-        print("There was an issue with requesting the data")
-        sys.exit(1)
-
-
-def printResponseError(response : requests.models.Response):
-    print("Sending data to {0} failed".format(response.url))
+        if response.status_code != 200:
+            print("The url {0} did not return the expected value back.".format(response.url))
+            print("Response: {0} {1}".format(response.status_code, response.reason))
+            sys.exit(0)
+        try:
+            return json.dumps(response.json(), indent=4, sort_keys=True)
+        except ValueError as e:
+            print(e)
+            sys.exit(0)
+    except requests.exceptions.Timeout:
+        # Maybe set up for a retry, or continue in a retry loop
+        print("Connection timed out")
+        sys.exit(0)
+    except requests.exceptions.TooManyRedirects:
+        # Tell the user their URL was bad and try a different one
+        print("Too many redirects")
+        sys.exit(0)
+    except requests.exceptions.RequestException as e:
+        print("There was an issue with requesting the data:")
+        print(e)
+        sys.exit(0)
 
 
 data = getData(args.restexternal)
@@ -77,7 +92,7 @@ response = s.put(args.restufl, data=data, verify=False)
 # use the function as listed below
 # response = s.post(args.resturl + '/post', data=data, verify=False)
 if response.status_code != 200:
-    printResponseError(response)
+    print("Sending data to {0} failed".format(response.url))
 else:
     print('The data was sent successfully over https.')
     print('Check the PI Connectors event logs for any further information.')
