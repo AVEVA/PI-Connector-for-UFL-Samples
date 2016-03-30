@@ -61,7 +61,7 @@ def getData(url):
     # Being way to careful when checking for failure
     try:
         response = requests.get(url=url)
-        if response.status_code != 200:
+        if response.status_code != requests.codes.ok:
             print("The url {0} did not return the expected value back.".format(response.url))
             print("Response: {0} {1}".format(response.status_code, response.reason))
             sys.exit(0)
