@@ -1,4 +1,4 @@
-""" piuflput.py
+""" putJSONdata.py
 
    Copyright 2016 OSIsoft, LLC.
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,87 +11,73 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-This python example sends a file's contents to the PI Connector
-using the UFL REST endpoint.
-This script requeries the Python requests module:
-http://docs.python-requests.org/en/master/
-Which can be installed using the following command:
-    pip install requests
-or, depending on your environement:
-    apt-get install python-requests
 
-The syntax is: python piufl.py REST-URL file
+Call: 
+    python putJSONdata.py rest-ufl rest-external
 
 Parameters:
     rest-ufl - The Address specified in the Data Source configuration
-    file - Data file to be processed by the Connector
+    rest-external - A third party data source which returns JSON data when receving a get request from this URL.
 
 Example:
-    python piuflput.py https://<server>:<port>/connectordata/value value.csv
+    python putJSONdata.py https://localhost:5460/connectordata/value http://api.fixer.io/latest?base=USD
 """
 
 import argparse
 import getpass
 import json
+from functools import lru_cache
 
 import requests
 
-# this line is not required if a trusted certificated
-# is used to replace the self signed certificate generated
-# by the PI connector for UFl
-requests.packages.urllib3.disable_warnings()
+# Suppress insecure HTTPS warnings, if an untrusted certificate is used by the target endpoint
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 # Process arguments
 parser = argparse.ArgumentParser()
 parser.description = 'POST file contents to PI Connector for UFL'
-parser.add_argument('resturl', help='REST endpoint address')
-parser.add_argument('externalendpoit', help='Data to be fetched and then to be Put-ed')
+parser.add_argument('restufl', help='The UFL rest endpoint address')
+parser.add_argument('restexternal', help='The external data source rest end point')
 args = parser.parse_args()
 
-
-def requestJSONdata(url):
-    response = requests.get(url=url)
-    return json.dumps(response.json(), indent=4, sort_keys=True)
-    
-s = requests.session()
-# In the Session information, set the username and password as specified in
-# the connector configuration page
-# You can hard code the credentials, if not, you will be prompted to enter them
-# If anonymous authentification is used, then use an emptry string for both
-_username = None
-_password = None
-
+@lru_cache(maxsize=1)
 def password():
-    global _password
-    if _password is None:
-        # Store the password so that this method is only called once
-        _password = getpass.getpass('please type in your password: ')
-    return _password
+    return getpass.getpass()
 
 
+@lru_cache(maxsize=1)
 def username():
-    global _username
-    if _username is None:
-        # Store the username so that this method is only called once
-        _username = getpass.getpass('please type in your username: ')
-    return _username
+    return getpass.getpass('Username: ')
 
+
+s = requests.session()
+# To hardcode the username and password, specify them below
+# To use anonymous login, use: ("", "")
 s.auth = (username(), password())
 
-# Read the file contents and send the content to the connector
-data = requestJSONdata(args.externalendpoit)
+def getData(url):
+    try:
+        response = requests.get(url=url)
+        return json.dumps(response.json(), indent=4, sort_keys=True)
+    except:
+        print("There was an issue with requesting the data")
+        sys.exit(1)
 
-print(data)
-print(args.resturl)
-# remove verify=False if the certificate was replaced
-response = s.put(args.resturl, data=data, verify=False)
+
+def printResponseError(response : requests.models.Response):
+    print("Sending data to {0} failed".format(response.url))
+
+
+data = getData(args.restexternal)
+
+# remove verify=False if the certificate used is a trusted one
+response = s.put(args.restufl, data=data, verify=False)
 # If instead of using the put request, you need to use the post request
 # use the function as listed below
 # response = s.post(args.resturl + '/post', data=data, verify=False)
 if response.status_code != 200:
-    print('The following error has occured:')
-    print(response.status_code, response.reason)
+    printResponseError(response)
 else:
-    print('The data was sent successfully')
-    print('Check the event logs for any parsing errors')
-
+    print('The data was sent successfully over https.')
+    print('Check the PI Connectors event logs for any further information.')

@@ -1,11 +1,11 @@
-# PI-Connector-for-UFL-Samples - JSON - Currency
+# PI-Connector-for-UFL-Samples - JSON
 
-These samples show how to get started with the PI Connector for UFL REST endpoint feature.
+These samples show how to get started with the PI Connector for UFL REST endpoint feature and in particular how to handle JSON files.
 
 ## Contents
 
-* Details on how to use of the PI Connector for UFL REST endpoint.
-* Python samples to fetch JSON data from an external rest endpoint and then send that data to the UFL REST endpoint.
+* A Python script that is designed to get data from a rest end point and send the collected data to the UFL REST endpoint.
+* A sample ini file to show how to parse a simple JSON file.
 
 ## Getting Started
 
@@ -14,7 +14,16 @@ The python script to send data have been tested with Pyhon 3.5.1 and require the
 The example ini file parses currency data that is public available at [http://fixer.io/](fixer.io), in particular it used to parse data from URLs such as: 
 [http://api.fixer.io/latest?base=USD](http://api.fixer.io/latest?base=USD)
 
+
+## Requirements
+The script and ini file were tested only with the following versions.
+
+PI connector for UFL - Version 1.0.0.41
+Python - 3.5.1
+Requests Python module - 2.9.1
+
 ## Tutorial on how to use these scripts
+
 1. Open the PI Connector for UFL admin page by opening a browser and visiting: [https://{servername}:{port}/admin/ui/](https://{servername}:{port}/admin/ui/).
 2. Specify a PI Data Archive and create a new data source.
 3. Upload fixer.ini as the Config File and select a username and password.
