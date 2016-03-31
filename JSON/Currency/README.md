@@ -19,9 +19,9 @@ You can actively discuss the example on [PI Square](https://pisquare.osisoft.com
 ## Requirements
 The script and ini file were tested only with the following versions.
 
-PI connector for UFL - Version 1.0.0.41
-Python - 3.5.1
-Requests Python module - 2.9.1
+* PI connector for UFL - Version 1.0.0.41
+* Python - 3.5.1
+* Requests Python module - 2.9.1
 
 ## Tutorial on how to use these scripts
 
