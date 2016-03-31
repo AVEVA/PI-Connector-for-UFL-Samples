@@ -25,28 +25,29 @@ Requests Python module - 2.9.1
 ## Tutorial on how to use these scripts
 
 1. Open the PI Connector for UFL admin page by opening a browser and visiting: [https://{servername}:{port}/admin/ui/](https://{servername}:{port}/admin/ui/).
-2. Specify a PI Data Archive and create a new data source.
-3. Upload fixer.ini as the Config File and select a username and password.
+2. Specify a PI Data Archive and create a new data source and name it, say with currency.
+3. Upload fixer.ini as the Config File and select a User Name and Password.
 4. Make the following choices:
-    * Select Rest as the Data Source Type
+    * Select REST as the Data Source Type
     * Leave New Line as blank
     * Select UTC for Incoming TimeStamps
-5. Save the data source and reopen it. The address field will now be populated.
-6. Copy the url in the address field and navigate to the folder where the Python sample code is stored.
+5. Save the data source and reopen it. The Address field will now be populated.
+6. Copy the url in the Address field and navigate to the folder where the Python sample code is stored.
 7. Run the command below to send data.
 
-    `python putJSONdata.py url http://api.fixer.io/latest?base=USD`
-7. Enter the specified username and password.
+    `python putJSONdata.py https://{servername}:{port}/connectordata/currency http://api.fixer.io/latest?base=USD`
+7. Enter the specified user name and password.
 8. You can now look up, for example, that the ufl.USD_to_JPY was created with today's currency exchange rate.
+9. If you also register a PI Asset Server, this will also create an element with name the base currency and each other currency rate will be stored as attributes.
 
 
 ## Note on the parsing of the JSON data
 
 The web service, [http://api.fixer.io/latest?base=USD](http://api.fixer.io/latest?base=USD) returns data as follows:
 
-    {"base":"USD","date":"2016-03-24","rates":{"AUD":1.3321,"BRL":3.7041,"CAD":1.3288,"BGN":1.7535,...,"EUR":0.89654}}
+    {"base":"USD","date":"2016-03-24","rates":{"AUD":1.3321,"BRL":3.7041,"CAD":1.3288,"BGN":1.7535,[...],"EUR":0.89654}}
 
-So, simply one long line of data. This is tricky, but not impossible to parse using UFL. To simplify things, we can use the python json module to "pretty print" the JSON data, this is on [Line 54](https://github.com/osisoft/PI-Connector-for-UFL-Samples/blob/master/JSON/Currency/putJSONdata.py#L54) of the script. The output is now as below and much easier to parse.
+So, one long line of data containing a single JSON object. This is tricky, but not impossible to parse using UFL. To simplify things, we can use the python json module to "pretty print" the JSON data, this is on [Line 54](https://github.com/osisoft/PI-Connector-for-UFL-Samples/blob/master/JSON/Currency/putJSONdata.py#L69) of the script. The output is now as below and much easier to parse.
 
     {
         "base": "USD",
@@ -54,7 +55,7 @@ So, simply one long line of data. This is tricky, but not impossible to parse us
         "rates": {
             "AUD": 1.3321,
             "BGN": 1.7535,
-            ...,
+            [...],
             "ZAR": 15.497
         }
     }
@@ -77,4 +78,3 @@ Copyright 2016 OSIsoft, LLC.
    limitations under the License.
    
 Please see the file named [LICENSE.md](LICENSE.md).
-
