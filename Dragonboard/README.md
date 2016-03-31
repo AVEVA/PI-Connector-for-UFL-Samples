@@ -1,46 +1,40 @@
 # PI-Connector-for-UFL-Samples - Dragonboard
 
-These samples show how to get started with getting data off of a Qualcomm dra the PI Connector for UFL REST endpoint feature.
+These samples show how to get started with getting data off of a Qualcomm Dragonboard the PI Connector for UFL REST endpoint feature.
 
 ## Contents
 
-* Details on how to use of the PI Connector for UFL REST endpoint.
-* Python samples to create a data file and then use the a HTTP Put command to send the data file to the UFL REST endpoint.
+* A Python sample to read some data off the Dragonboard use the a HTTP put command to send the data file to the UFL REST endpoint.
 
 ## Getting Started
 
-You will need a development/test PI System and the PI Connector for UFL (the samples were tested with version 1.0.0.41).
-The scripts to send data have been tested with Pyhon 3.5.1 and come in two versions. 
-* piuflput.py - uses the Python requests module. The request module simplifies a lot the sending and receiving of http requests and it is strongly encouraged to use this module. 
-* piuflput_urllib.py - uses only Python modules that are part of a standard install of Python3.
+You will need a development/test PI System and the PI Connector for UFL. There are two files included:
+* SendDragonBoardData.py - A python script that will collect data from a Dragonboard, package it as JSON file and send it to the UFL connector.
+* DragonBoard.ini - A UFL ini file that is used to parse the JSON output.
+
+## Requirements
+The script and ini file were tested only with the following versions.
+
+* PI connector for UFL - Version 1.0.0.41
+* Python - 3.5.1
+* Requests Python module - 2.9.1
+* Linux Metrics Python module - 0.1.4
 
 ## Tutorial on how to use these scripts
 1. Open the PI Connector for UFL admin page by opening a browser and visiting: [https://{servername}:{port}/admin/ui/](https://{servername}:{port}/admin/ui/).
-2. Specify a PI Data Archive and create a new data source.
-3. Upload value.ini as the Config File and select a username and password.
+2. Specify a PI Data Archive and create a new data source, say dragonboad
+3. Upload DragonBoard.ini as the Config File and select a username and password.
 4. Make the following choices:
     * Select Rest as the Data Source Type
     * Leave New Line as blank
     * Select UTC for Incoming TimeStamps
 5. Save the data source and reopen it. The address field will now be populated.
 6. Copy the url in the address field and navigate to the folder where the Python sample code is stored.
-7. Run the command below to send data.
+7. Run the command below to send data. Where the second to last argument is the name of the device and the final argument is the sampling rate.
 
-    `python piuflput_urllib.py url value.csv`
+    `python SendDragonBoardData.py https://uflserver:5460/connectordata/dragonboard "Smaug" 10`
 7. Enter the specified username and password.
-8. You can now look up, for example, that the ufl.tag 00-00-00-b2-11-1a:rpm was created at the utc time: 2016-02-11T22:17:03Z there is the value of 1968.
-9. To generate more data with current timestamps you can run the command below.
-
-    `python piuflgen.py value > morevalues.csv`
-10. For an other example, you can specify a PI Asset Server and re-run the previous steps using values instead of value.
-11. If you plan on expending theses examples, consider installing the request module and using the [piuflput.py](piuflput.py) example.
-12. To install the request module, you can use the following commands:
-
-    `pip install requests`
-
- or
- 
-    `apt-get install python-requests`
+8. You can now look up, for example, that the tag "UFL.Smaug_CPU Usage".
 
 ##Licensing
 
@@ -59,22 +53,3 @@ Copyright 2016 OSIsoft, LLC.
    limitations under the License.
    
 Please see the file named [LICENSE.md](LICENSE.md).
-
-
-
-# On a DragonBoard, you can set up this script to run at startup
-# by opening, from the taskbar menu:
-# Preferences > Default applications for LXSession > Autostart
-# Then under "Manual autostarted applications", enter a new line:
-# @lxterminal -e python <path-to-this-script>
-
-
-# To monitor system resources, install linux-metrics:
-# Visit https://github.com/cgoldberg/linux-metrics
-# Download the ZIP file, and run setup.py
-import linux_metrics as lm
-# Note: you may have to copy the below folder from the ZIP file:
-# linux-metrics-master 
-# and paste it into the dist-packages folder within
-# your python install directories (both of them), which
-# are located in /usr/local/lib

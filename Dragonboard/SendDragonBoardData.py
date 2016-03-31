@@ -43,8 +43,7 @@ import linux_metrics as lm
 
 # Suppress insecure HTTPS warnings, if an untrusted certificate is used by the target endpoint
 # Remove if targetting trusted targets
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+requests.packages.urllib3.disable_warnings()
 
 
 # Process arguments
@@ -64,16 +63,19 @@ s = requests.session()
 _username = None
 _password = None
 
-@lru_cache(maxsize=1)
-def password():
-    return getpass.getpass()
-
-
-@lru_cache(maxsize=1)
 def username():
-    return getpass.getpass('Username: ')
-#s.auth = (username(), password())
-s.auth = ('a', 'a')
+    global _username
+    if _username is None:
+        _username = getpass.getpass('Username: ')
+    return _username
+   
+
+def password():
+    global _password
+    if _password is None:
+        _password = getpass.getpass()
+    return _password
+s.auth = (username(), password())
 
 # Begin!
 print("Program beginning...")
@@ -113,7 +115,6 @@ while True:
     try:
         sensorData = getData()
         data = json.dumps(sensorData, indent=4, sort_keys=True)
-        print(data)        
         # You should remove verify=False if the certificate used is a trusted one.
         response = s.put(args.restufl, data=data, verify=False)
         print(str(datetime.now()) + " Send status: " + str(response.status_code) + ' ' + str(response.reason))
