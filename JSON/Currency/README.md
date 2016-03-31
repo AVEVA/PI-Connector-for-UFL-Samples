@@ -14,6 +14,7 @@ The python script to send data have been tested with Pyhon 3.5.1 and require the
 The example ini file parses currency data that is public available at [http://fixer.io/](fixer.io), in particular it used to parse data from URLs such as: 
 [http://api.fixer.io/latest?base=USD](http://api.fixer.io/latest?base=USD)
 
+You can actively discuss the example on [PI Square](https://pisquare.osisoft.com/people/jlefebvre/blog/2016/03/30/get-public-json-data-into-pi-using-the-pi-connector-for-ufl) as well.
 
 ## Requirements
 The script and ini file were tested only with the following versions.
