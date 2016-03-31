@@ -20,7 +20,7 @@ Parameters:
     rest-external - A third party data source which returns JSON data when receving a get request from this URL.
 
 Example:
-    python putJSONdata.py https://localhost:5460/connectordata/value http://api.fixer.io/latest?base=USD
+    python putJSONdata.py https://localhost:5460/connectordata/currency http://api.fixer.io/latest?base=USD
 """
 
 import argparse
@@ -58,7 +58,7 @@ s = requests.session()
 s.auth = (username(), password())
 
 def getData(url):
-    # Being way to careful when checking for failure
+    # Being very careful when checking for failure when accessing the external site
     try:
         response = requests.get(url=url)
         if response.status_code != requests.codes.ok:
@@ -92,7 +92,7 @@ response = s.put(args.restufl, data=data, verify=False)
 # use the function as listed below
 # response = s.post(args.resturl + '/post', data=data, verify=False)
 if response.status_code != 200:
-    print("Sending data to {0} failed".format(response.url))
+    print("Sending data to the UFL connect failed due to error {0} {1}".format(response.status_code, response.reason))
 else:
     print('The data was sent successfully over https.')
     print('Check the PI Connectors event logs for any further information.')
