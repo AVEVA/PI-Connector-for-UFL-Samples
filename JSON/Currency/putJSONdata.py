@@ -36,10 +36,10 @@ import json
 
 import requests
 
-# this line is not required if a trusted certificated
-# is used to replace the self signed certificate generated
-# by the PI connector for UFl
-requests.packages.urllib3.disable_warnings()
+# Suppress insecure HTTPS warnings, if an untrusted certificate is used by the target endpoint
+# Remove if targetting trusted targets
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 # Process arguments
 parser = argparse.ArgumentParser()
