@@ -1,15 +1,15 @@
-# PI-Connector-for-UFL-Samples - Dragonboard
+# PI-Connector-for-UFL-Samples - DragonBoard
 
-These samples show how to get started with getting data off of a Qualcomm Dragonboard the PI Connector for UFL REST endpoint feature.
+These samples show how to get started with getting data off of a Qualcomm DragonBoard the PI Connector for UFL REST endpoint feature.
 
 ## Contents
 
-* A Python sample to read some data off the Dragonboard use the a HTTP put command to send the data file to the UFL REST endpoint.
+* A Python sample to read some data off the DragonBoard use the a HTTP put command to send the data file to the UFL REST endpoint.
 
 ## Getting Started
 
 You will need a development/test PI System and the PI Connector for UFL. There are two files included:
-* SendDragonBoardData.py - A python script that will collect data from a Dragonboard, package it as JSON file and send it to the UFL connector.
+* SendDragonBoardData.py - A python script that will collect data from a DragonBoard, package it as JSON file and send it to the UFL connector.
 * DragonBoard.ini - A UFL ini file that is used to parse the JSON output.
 
 ## Requirements
@@ -32,7 +32,7 @@ The script and ini file were tested only with the following versions.
 6. Copy the url in the address field and navigate to the folder where the Python sample code is stored.
 7. Run the command below to send data. Where the second to last argument is the name of the device and the final argument is the sampling rate.
 
-    `python SendDragonBoardData.py https://uflserver:5460/connectordata/dragonboard "Smaug" 10`
+    `python SendDragonBoardData.py https://uflserver:5460/connectordata/DragonBoard "Smaug" 10`
 7. Enter the specified username and password.
 8. You can now look up, for example, that the tag "UFL.Smaug_CPU Usage".
 
