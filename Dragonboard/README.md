@@ -15,10 +15,10 @@ You will need a development/test PI System and the PI Connector for UFL. There a
 ## Requirements
 The script and ini file were tested only with the following versions.
 
-* PI connector for UFL - Version 1.0.0.41
-* Python - 3.5.1
-* Requests Python module - 2.9.1
-* Linux Metrics Python module - 0.1.4
+* [PI connector for UFL](https://techsupport.osisoft.com/Products/PI-Interfaces-and-PI-Connectors/PI-Connector-for-UFL/) - Version 1.0.0.41
+* [Python](https://docs.python.org/3.5/) - 3.5.1
+* [Requests Python module](https://pypi.python.org/pypi/requests) - 2.9.1
+* [Linux Metrics Python module](https://pypi.python.org/pypi/linux-metrics) - 0.1.4
 
 ## Tutorial on how to use these scripts
 1. Open the PI Connector for UFL admin page by opening a browser and visiting: [https://{servername}:{port}/admin/ui/](https://{servername}:{port}/admin/ui/).
