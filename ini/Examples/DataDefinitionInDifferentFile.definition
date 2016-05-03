@@ -1,0 +1,23 @@
+DATACOLLECTOR
+#NAME;TYP;FORMEL;DIMENSION;TEXT;EXPORT
+data1;A;1.4/10000*x-0.7;-;Power factor net connection;J
+data2;A;61/10000*x-1;MW;Generator active power;J
+data3;A;61/10000*x-1;MW;Generator active power;J
+data4;A;61/10000*x-1;MW;Generator active power;J
+data5;A;1/1000*x;A;Exciter Field Current;J
+data6;A;1/100*x;V;Exciter Field Voltage;J
+data7;A;14/10000*x;kV;Generator line voltage;J
+data8;A;1/6250*x-0.8;-;Generator power factor;J
+data9;A;90/10000*x-30;MVAr;Generator reactive power;J
+data10;A;300/10000*x;A;EOP Current;J
+data11;A;150/10000*x;barg;BFW supply upstream bypass stations;J
+data12;A;300/10000*x;°C;BFW supply upstream bypass stations;J
+data13;A;1/80*x;barg;HP steam upstream reducing station;J
+data14;A;450/10000*x;°C;HP steam upstream reducing station;J
+data15;A;1/80*x;barg;HP steam upstream Turbine;J
+data16;A;1/80*x;barg;HP steam upstream Turbine;J
+data17;A;1/80*x;barg;HP steam upstream Turbine;J
+data18;A;1/80*x;barg;HP steam upstream Turbine;J
+data19;A;450/10000*x;°C;HP steam upstream Turbine;J
+data20;A;450/10000*x;°C;HP steam upstream Turbine;J
+data21;A;450/10000*x;°C;HP steam upstream Turbine;J
