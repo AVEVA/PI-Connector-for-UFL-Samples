@@ -1,4 +1,18 @@
+""" SendDragonBoardData.py
+   Copyright 2016 OSIsoft, LLC.
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+"""
+
 #!/usr/bin/python
+from __future__ import print_function
 import os
 import time
 import json
@@ -35,9 +49,8 @@ try:
         #Iterate through each file and post the file contents (JSON) to UFL REST endpoint
         for infile in dirList:
             #Iterate the counter first to ensure we leave at least one file in the directory
-			loopCount += 1
-			
-			#If we've processed all but one file, exit the loop
+            loopCount += 1
+            #If we've processed all but one file, exit the loop
             if loopCount == fileCount:
                 break
                                
@@ -53,8 +66,8 @@ try:
                 response = requests.post(url, data=payload, auth=(un,pw), verify=False, headers=headers)
             except:
                 #If we throw an exception, simply break and try again on the next loop
-			    print "Error during HTTP POST. Aborting loop."
-				break
+                print "Error during HTTP POST. Aborting loop."
+                break
             #If successful, delete the file
             if response.status_code == 200:
                 os.remove(os.path.join(path, infile))
