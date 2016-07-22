@@ -26,20 +26,20 @@ The script and ini file were tested only with the following versions.
 ## Tutorial on how to use these scripts
 
 1. Open the PI Connector for UFL admin page by opening a browser and visiting: [https://{servername}:{port}/admin/ui/](https://{servername}:{port}/admin/ui/).
-2. Specify a PI Data Archive and create a new data source and name it, say with currency.
-3. Upload fixer.ini as the Config File and select a User Name and Password.
-4. Make the following choices:
-    * Select REST as the Data Source Type
-    * Leave New Line as blank
-    * Select UTC for Incoming TimeStamps
-5. Save the data source and reopen it. The Address field will now be populated.
-6. Copy the url in the Address field and navigate to the folder where the Python sample code is stored.
-7. Run the command below to send data.
+1. Specify a PI Data Archive and create a new data source and name it, say with currency.
+1. Upload fixer.ini as the Config File and select a User Name and Password.
+1. Make the following choices:
+* Select REST as the Data Source Type
+* Leave New Line as blank
+* Select UTC for Incoming TimeStamps
+1. Save the data source and reopen it. The Address field will now be populated.
+1. Copy the url in the Address field and navigate to the folder where the Python sample code is stored.
+1. Run the command below to send data.
 
     `python putJSONdata.py https://{servername}:{port}/connectordata/currency http://api.fixer.io/latest?base=USD`
-7. Enter the specified user name and password.
-8. You can now look up, for example, that the ufl.USD_to_JPY was created with today's currency exchange rate.
-9. If you also register a PI Asset Server, this will also create an element with name the base currency and each other currency rate will be stored as attributes.
+1. Enter the specified user name and password.
+1. You can now look up, for example, that the ufl.USD_to_JPY was created with today's currency exchange rate.
+1. If you also register a PI Asset Server, this will also create an element with name the base currency and each other currency rate will be stored as attributes.
 
 
 ## Note on the parsing of the JSON data
@@ -62,7 +62,7 @@ So, one long line of data containing a single JSON object. This is tricky, but n
     }
 
 
-##Licensing
+## Licensing
 
 Copyright 2016 OSIsoft, LLC.
 
@@ -77,5 +77,5 @@ Copyright 2016 OSIsoft, LLC.
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   
+
 Please see the file named [LICENSE.md](LICENSE.md).
