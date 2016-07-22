@@ -31,13 +31,17 @@ Example:
 
 
 import time
+# Note: on a new DragonBoard, automatic time syncing with internet time clocks may not be enabled! To enable it,
+# from a terminal run sudo apt-get update, then sudo apt-get install ntp to install NTP, then, 
+# from the desktop launcher, open Preferences, and under Time and Date set the correct time zone and turn on automatic time synchronization
 import json
 import argparse
 import sys
 import getpass
 from datetime import datetime
 
-# Install these additional libraries using pip install
+# Install these additional libraries using the terminl command pip install XXXX
+# If pip isn't installed, install it from a terminal using sudo apt-get update, then sudo apt-get install python-pip
 import requests
 import linux_metrics
 
@@ -102,7 +106,7 @@ def getData():
     # Get position using a third-party geolocation service
     # Use a try-except statement in case any sensor readings fail
     try:
-        geolocationServiceURL = 'http://ip-json.rhcloud.com/json'
+        geolocationServiceURL = 'http://ip-json.rhcloud.com/json'# If geolocation fails, try this alternate site: 'http://freegeoip.net/json/'
         geolocationRequest = requests.get(geolocationServiceURL, timeout=5)
         geolocationJSONData = json.loads(geolocationRequest.text)
         latitude = geolocationJSONData['latitude']
@@ -154,7 +158,8 @@ while True:
     except Exception as e:
         # Log any error, if it occurs
         print(str(datetime.now()) + " An error has ocurred: " + str(e))
-        sys.exit(1)
+        # Uncomment the below line to have the program terminate on any error; otherwise, it will re-loop and try again
+        # sys.exit(1)
     finally:    
         # Sleep until the next sample
         time.sleep(int(args.sampling))
