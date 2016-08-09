@@ -2,6 +2,17 @@
 
 These samples show how to get started with getting data off of a Qualcomm DragonBoard the PI Connector for UFL REST endpoint feature.
 
+In addition, the PI Connector for UFL .INI file that was set up for the Qualcomm DragonBoard can accept data from any other source that sends data in the appropriate JSON format (note: spaces are used instead of tabs):
+
+{
+    "!device": "deviceName", 
+    "!time": "yyyy-mm-dd hh:mm:ss", 
+    "Sensor Name 1": "1.990", 
+    "Sensor Name 2": "0.0", 
+}
+
+For example, at the 2016 National Instruments NI Week Conference, this exact .INI file was used to parse JSON sent from a CompactRIO data acquisition module that was monitoring an industrial stepper motor.
+
 ## Contents
 
 * A Python sample to read some data off the DragonBoard use the a HTTP put command to send the data file to the UFL REST endpoint.
