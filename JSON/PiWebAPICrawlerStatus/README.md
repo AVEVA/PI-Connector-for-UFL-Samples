@@ -43,7 +43,7 @@ The script and ini file were tested only with the following versions.
 The PI Web API always returns data in a JSON format, but this can sometime be tricky to parse. Thus, we use the PowerShell method `ConvertTo-JSON` to format the data in a consitent way.
 
 
-{
+    {
     "Links":  {
 
               },
@@ -78,7 +78,7 @@ The PI Web API always returns data in a JSON format, but this can sometime be tr
                       "CrawlerVersion":  "1.4.0.1379"
                   }
               ]
-}
+    }
 
 ## Licensing
 
