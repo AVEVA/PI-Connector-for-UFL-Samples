@@ -17,6 +17,7 @@ The example ini file parses currency data that is public available at [http://fi
 You can actively discuss the example on [PI Square](https://pisquare.osisoft.com/people/jlefebvre/blog/2016/03/30/get-public-json-data-into-pi-using-the-pi-connector-for-ufl) as well.
 
 ## Requirements
+
 The script and ini file were tested only with the following versions.
 
 * PI connector for UFL - Version 1.0.0.41
