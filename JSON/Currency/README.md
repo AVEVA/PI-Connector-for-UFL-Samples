@@ -1,10 +1,10 @@
 # PI-Connector-for-UFL-Samples - JSON
 
-These samples show how to get started with the PI Connector for UFL REST endpoint feature and in particular how to handle JSON files.
+This sample shows how to get started with the PI Connector for UFL and in particular how to use the REST endpoint of the connector and how to handle JSON files.
 
 ## Contents
 
-* A Python script that is designed to get data from a rest end point and send the collected data to the UFL REST endpoint.
+* A Python script that is designed to get data from a publically available data source and send the collected data to the UFL REST endpoint.
 * A sample ini file to show how to parse a simple JSON file.
 
 ## Getting Started
@@ -13,8 +13,6 @@ You will need a development/test PI System and the PI Connector for UFL (the sam
 The python script to send data have been tested with Pyhon 3.5.1 and require the use of the request module.
 The example ini file parses currency data that is public available at [http://fixer.io/](fixer.io), in particular it used to parse data from URLs such as: 
 [http://api.fixer.io/latest?base=USD](http://api.fixer.io/latest?base=USD)
-
-You can actively discuss the example on [PI Square](https://pisquare.osisoft.com/people/jlefebvre/blog/2016/03/30/get-public-json-data-into-pi-using-the-pi-connector-for-ufl) as well.
 
 ## Requirements
 
@@ -41,7 +39,7 @@ The script and ini file were tested only with the following versions.
 1. Enter the specified user name and password.
 1. You can now look up, for example, that the ufl.USD_to_JPY was created with today's currency exchange rate.
 1. If you also register a PI Asset Server, this will also create an element with name the base currency and each other currency rate will be stored as attributes.
-
+1. You can track several different currencies by requesting data using different URL parameters, such as: [http://api.fixer.io/latest?base=JPY](http://api.fixer.io/latest?base=USD)
 
 ## Note on the parsing of the JSON data
 
@@ -62,6 +60,15 @@ So, one long line of data containing a single JSON object. This is tricky, but n
         }
     }
 
+To see a full example of the data, please see the `example_dat.dat` file.
+
+## Maintainers
+
+* [Jerome Lefebvre](https://github.com/jeromelefebvre)
+
+## PI Square
+
+You discuss and post feedback on this project on the associated [PI Square Blog post](https://pisquare.osisoft.com/people/jlefebvre/blog/2016/03/30/get-public-json-data-into-pi-using-the-pi-connector-for-ufl)
 
 ## Licensing
 

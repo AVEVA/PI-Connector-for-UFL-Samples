@@ -54,7 +54,7 @@ def username():
 
 s = requests.session()
 # To hardcode the username and password, specify them below
-# To use anonymous login, use: ("", "")
+# To use anonymous login, use: ("", "") or comment out the line below
 s.auth = (username(), password())
 
 def getData(url):
@@ -87,7 +87,6 @@ def getData(url):
 data = getData(args.restexternal)
 
 # remove verify=False if the certificate used is a trusted one
-print(data)
 response = s.put(args.restufl, data=data, verify=False)
 # If instead of using the put request, you need to use the post request
 # use the function as listed below
