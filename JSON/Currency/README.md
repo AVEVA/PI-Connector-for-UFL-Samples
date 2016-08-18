@@ -62,6 +62,12 @@ So, one long line of data containing a single JSON object. This is tricky, but n
 
 To see a full example of the data, please see the `example_dat.dat` file.
 
+## Automate
+
+As this data is updated daily, you may want to run the python script daily as well. As python can run on many different platforms, each will have their own ways of running automatic tasks, but all will require the username and password to be made available in plain text to the script, this is a limitation of having to use basic.
+To automate the script on windows, it is possible to use Windows' [task scheduler](https://msdn.microsoft.com/en-us/library/windows/desktop/aa383614(v=vs.85).aspx). To do see, the program listed in the action will be python, for example `C:\Anaconda3\python.exe` and the argument will be something like: `{pathtoscript}\putJSONdata.py https://{servername}:{port}/connectordata/currency http://api.fixer.io/latest?base=USD`.
+
+
 ## Maintainers
 
 * [Jerome Lefebvre](https://github.com/jeromelefebvre)
