@@ -45,7 +45,7 @@ The script and ini file were tested only with the following versions.
 
 The web service, [http://api.fixer.io/latest?base=USD](http://api.fixer.io/latest?base=USD) returns data as follows:
 
-    {"base":"USD","date":"2016-03-24","rates":{"AUD":1.3321,"BRL":3.7041,"CAD":1.3288,"BGN":1.7535,[...],"EUR":0.89654}}
+    {"base":"USD","date":"2016-03-24","rates":{"AUD":1.3321,"CAD":1.3288,"BGN":1.7535,[...],"EUR":0.89654}}
 
 So, one long line of data containing a single JSON object. This is tricky, but not impossible to parse using UFL. To simplify things, we can use the python json module to "pretty print" the JSON data, this is on [Line 54](https://github.com/osisoft/PI-Connector-for-UFL-Samples/blob/master/JSON/Currency/putJSONdata.py#L69) of the script. The output is now as below and much easier to parse.
 
@@ -65,7 +65,7 @@ To see a full example of the data, please see the `example_dat.dat` file.
 ## Automate
 
 As this data is updated daily, you may want to run the python script daily as well. As python can run on many different platforms, each will have their own ways of running automatic tasks, but all will require the username and password to be made available in plain text to the script, this is a limitation of having to use basic.
-To automate the script on windows, it is possible to use Windows' [task scheduler](https://msdn.microsoft.com/en-us/library/windows/desktop/aa383614(v=vs.85).aspx). To do see, the program listed in the action will be python, for example `C:\Anaconda3\python.exe` and the argument will be something like: `{pathtoscript}\putJSONdata.py https://{servername}:{port}/connectordata/currency http://api.fixer.io/latest?base=USD`.
+To automate the script on windows, it is possible to use Windows' [task scheduler](https://msdn.microsoft.com/en-us/library/windows/desktop/aa383614(v=vs.85).aspx). To do see, the program listed in the action will be python, for example `C:\Anaconda3\python.exe` and the argument will be something like: `C:\{pathtoscript}\putJSONdata.py https://{servername}:{port}/connectordata/currency http://api.fixer.io/latest?base=USD`.
 
 
 ## Maintainers
