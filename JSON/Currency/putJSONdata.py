@@ -13,21 +13,23 @@
 
 
 Call: 
-    python putJSONdata.py rest-ufl rest-external
+    python putJSONdata.py restufl currency
 
 Parameters:
-    rest-ufl - The Address specified in the Data Source configuration
-    rest-external - A third party data source which returns JSON data when receving a get request from this URL.
+    restufl - The address specified in the Data Source configuration
+    currency - The currency you want to store
+    anonymous - [Optional] flag to connect without using username/password
+    backfill - [Optional] flag to tell the script to backfill data
 
 Example:
-    python putJSONdata.py https://localhost:5460/connectordata/currency http://api.fixer.io/latest?base=USD
+    python putJSONdata.py https://localhost:5460/connectordata/currency JPY --anonymous
 """
 
 import argparse
 import getpass
 import json
 import sys
-from functools import lru_cache
+from datetime import timedelta, date
 
 import requests
 
@@ -39,28 +41,27 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 parser = argparse.ArgumentParser()
 parser.description = 'POST file contents to PI Connector for UFL'
 parser.add_argument('restufl', help='The UFL rest endpoint address')
-parser.add_argument('restexternal', help='The external data source rest end point')
+parser.add_argument('currency', help='The currency code')
+parser.add_argument('--backfill', dest='backfill', action='store_true')
+parser.add_argument('--anonymous', dest='anonymous', action='store_true')
+parser.set_defaults(backfill=False)
+parser.set_defaults(anonymous=False)
 args = parser.parse_args()
 
-@lru_cache(maxsize=1)
 def password():
     return getpass.getpass()
 
-
-@lru_cache(maxsize=1)
 def username():
     return getpass.getpass('Username: ')
 
-
 s = requests.session()
 # To hardcode the username and password, specify them below
-# To use anonymous login, use: ("", "") or comment out the line below
-s.auth = (username(), password())
+s.auth = ("", "") if args.anonymous else (username(), password())
 
-def getData(url):
+def getData(url, params={}):
     # Being very careful when checking for failure when accessing the external site
     try:
-        response = requests.get(url=url)
+        response = requests.get(url=url, params=params)
         if response.status_code != requests.codes.ok:
             print("The url {0} did not return the expected value back.".format(response.url))
             print("Response: {0} {1}".format(response.status_code, response.reason))
@@ -83,16 +84,24 @@ def getData(url):
         print(e)
         sys.exit(0)
 
+def daterange(startDate, endDate):
+    for n in range(int((endDate - startDate).days)):
+        yield startDate + timedelta(n)
 
-data = getData(args.restexternal)
+def url(day):
+    return "https://api.fixer.io/" + day.strftime("%Y-%m-%d")
 
-# remove verify=False if the certificate used is a trusted one
-response = s.put(args.restufl, data=data, verify=False)
-# If instead of using the put request, you need to use the post request
-# use the function as listed below
-# response = s.post(args.resturl + '/post', data=data, verify=False)
-if response.status_code != 200:
-    print("Sending data to the UFL connect failed due to error {0} {1}".format(response.status_code, response.reason))
-else:
-    print('The data was sent successfully over https.')
-    print('Check the PI Connectors event logs for any further information.')
+# The oldest data is date(1999, 1, 4)
+startDate = date(1999, 1, 4) if args.backfill else date.fromordinal(date.today().toordinal() - 1)
+endDate = date.fromordinal(date.today().toordinal())
+
+for day in daterange(startDate, endDate):
+    print("Fetching the date for: " + day.strftime("%Y-%m-%d") + " currency:" + args.currency)
+    data = getData(url(day), params={"base": args.currency})
+    # remove verify=False if the certificate used is a trusted one
+    response = s.put(args.restufl, data=data, verify=False)
+    if response.status_code != 200:
+        print("Sending data to the UFL connect failed due to error {0} {1}".format(response.status_code, response.reason))
+    else:
+        print('The data was sent successfully over https.')
+        print('Check the PI Connectors event logs for any further information.')
