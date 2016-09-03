@@ -35,12 +35,13 @@ The script and ini file were tested only with the following versions.
 1. Copy the url in the Address field and navigate to the folder where the Python sample code is stored.
 1. Run the command below to send data.
 
-    `python putJSONdata.py https://{servername}:{port}/connectordata/currency http://api.fixer.io/latest?base=USD`
+    `python putJSONdata.py https://{servername}:{port}/connectordata/currency USD`
 1. Enter the specified user name and password.
 1. You can now look up, for example, that the ufl.USD_to_JPY was created with today's currency exchange rate.
 1. If you also register a PI Asset Server, this will also create an element with name the base currency and each other currency rate will be stored as attributes.
-1. You can track several different currencies by requesting data using different URL parameters, such as: [http://api.fixer.io/latest?base=JPY](http://api.fixer.io/latest?base=USD)
-
+1. You can track several different currencies by requesting data using different currency cod parameters, such as: [JPY](http://api.fixer.io/latest?base=USD)
+1. You can also backfil using the --backfill command (Warining: This may take quite a while, edit the start date in the script)
+    `python putJSONdata.py https://{servername}:{port}/connectordata/currency USD --backfill`
 ## Note on the parsing of the JSON data
 
 The web service, [http://api.fixer.io/latest?base=USD](http://api.fixer.io/latest?base=USD) returns data as follows:
