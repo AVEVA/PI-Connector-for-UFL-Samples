@@ -100,7 +100,7 @@ while (True):
         temperatureCelsius = sense.get_temperature_from_humidity()
         temperatureFahrenheit = temperatureCelsius * 9/5 + 32
         pressureMillibars = sense.get_pressure()
-        pitch, roll, yaw = sense.get_orientation_degrees()
+        pitch, roll, yaw = sense.get_orientation_degrees().values()
         degreesToNorth = sense.get_compass()
         accelerationx, accelerationy, accelerationz = sense.get_accelerometer_raw().values()
     except:
