@@ -1,12 +1,13 @@
-from sense_hat import SenseHat
-from datetime import datetime
-import time
-import requests
-import json
-import sys
-import os
-import socket
-import webcolors # install this via the terminal command 'pip3 install webcolors'
+import sense_hat   # Used for controlling the Sense Hat
+import datetime    # Used for getting the timestamp
+import time        # Used for inserting pauses (sleeps)
+import requests    # Used to send the data requests
+import json        # Used to parse geolocation JSON
+import sys         # Used to parse error messages
+import os          # Used to sync the internal clock
+import socket      # Used to get the current host name
+import webcolors   # Used to allow easily referencing colors by name
+# Install a missing library 'XXX' via the terminal command 'pip3 install XXX'
 
 # --------------------------------------------
 
@@ -20,6 +21,10 @@ _p = "changethistoyourpassword"
 
 # Define the how often data will be collected and sent
 SAMPLE_INTERVAL_SECONDS = 2
+
+# Specify whether the lights should turn off at night;
+# if set to true, LEDs will be disabled between 10 PM - 7 AM
+NIGHT_MODE_ENABLED = True
 
 # --------------------------------------------
 
@@ -60,7 +65,7 @@ except:
     print('Error syncing time!')
     
 # Initialize the sensor hat object
-sense = SenseHat()
+sense = sense_hat.SenseHat()
 print("Sensor hat initialized...")
 
 # Activate the compass, gyro, and accelerometer
@@ -77,7 +82,7 @@ print("Data will be sent to " + targetURL + " every " + str(SAMPLE_INTERVAL_SECO
 while (True):
 
     # Get the current time
-    currentTime = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    currentTime = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
     # --------------------------------------------
 
@@ -141,23 +146,33 @@ while (True):
         # since the LED display is mounted upside-down
         scaledRecentReadings.append(7 - scaledRecentReading)
 
-    # Loop through the array, right to left (7 to 0);
-    # This lights up LEDs on the display one column at a time
-    for LEDcolumnIndex in range(7, -1, -1):
-        # Loop through all 8 LEDs in this column of LEDs
-        for LEDrowIndex in range(0, 8, 1):
-            # Determine the color for this LED by
-            # comparing the row (0-7) that this LED is in
-            # to the corresponding scaled recent reading
-            if LEDrowIndex >= scaledRecentReadings[LEDcolumnIndex]:
-                # In this case, the row number determines the LED color
-                # Higher row numbers will get "warmer" colors
-                sense.set_pixel(LEDcolumnIndex,LEDrowIndex,
-                    RED_TO_GREEN_COLOR_BAR[LEDrowIndex])
-            else :
-                # Otherwise, by default, set this LED to the background color
-                sense.set_pixel(LEDcolumnIndex,LEDrowIndex,
-                    DEFAULT_BACKGROUND_COLOR)
+    # --------------------------------------------
+    
+    # Test the hour of day; if it's too late or early, don't show the lights
+    currentHour = datetime.datetime.now().hour
+    if (NIGHT_MODE_ENABLED and ((currentHour > 22) or (currentHour < 7))):
+        # If it's too late or early, sleep 1 second, then turn off the lights
+        time.sleep(1)
+        sense.clear()
+    else:
+        # Otherwise, turn on the LEDs!
+        # Loop through the array, right to left (7 to 0);
+        # This lights up LEDs on the display one column at a time
+        for LEDcolumnIndex in range(7, -1, -1):
+            # Loop through all 8 LEDs in this column of LEDs
+            for LEDrowIndex in range(0, 8, 1):
+                # Determine the color for this LED by
+                # comparing the row (0-7) that this LED is in
+                # to the corresponding scaled recent reading
+                if LEDrowIndex >= scaledRecentReadings[LEDcolumnIndex]:
+                    # In this case, the row number determines the LED color
+                    # Higher row numbers will get "warmer" colors
+                    sense.set_pixel(LEDcolumnIndex,LEDrowIndex,
+                        RED_TO_GREEN_COLOR_BAR[LEDrowIndex])
+                else :
+                    # Otherwise, by default, set this LED to the background color
+                    sense.set_pixel(LEDcolumnIndex,LEDrowIndex,
+                        DEFAULT_BACKGROUND_COLOR)
         
     # --------------------------------------------
     
