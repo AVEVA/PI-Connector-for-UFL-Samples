@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import sense_hat   # Used for controlling the Sense Hat
 import datetime    # Used for getting the timestamp
 import time        # Used for inserting pauses (sleeps)
@@ -9,38 +8,24 @@ import os          # Used to sync the internal clock
 import socket      # Used to get the current host name
 import webcolors   # Used to allow easily referencing colors by name
 # Install a missing library 'XXX' via the terminal command 'pip3 install XXX'
-=======
-from sense_hat import SenseHat
-from datetime import datetime
-import time
-import requests
-import json
-import sys
-import os
-import socket
-import webcolors # install this via the terminal command 'pip3 install webcolors'
->>>>>>> master
 
 # --------------------------------------------
 
 # Specify the name of this device (use the host name, or hard-code in a name)
-#deviceName = "Raspberry PI Sensor Hat Module"
+# deviceName = "Raspberry PI Sensor Hat Module"
 deviceName = socket.gethostname()
-# Specify the target URL where data should be sent, along with login creds 
-targetURL = "https://changethistoyourservername:5460/connectordata/RaspberryPISenseHatData/"
+# Specify the target URL where data should be sent, along with login creds
+targetURL = "https://{servername}:5460/connectordata/RaspberryPISenseHatData/"
 _u = "changethistoyourusername"
 _p = "changethistoyourpassword"
 
 # Define the how often data will be collected and sent
 SAMPLE_INTERVAL_SECONDS = 2
 
-<<<<<<< HEAD
 # Specify whether the lights should turn off at night;
 # if set to true, LEDs will be disabled between 10 PM - 7 AM
 NIGHT_MODE_ENABLED = True
 
-=======
->>>>>>> master
 # --------------------------------------------
 
 # Define the color bar that will be used for each row of LEDs
@@ -65,9 +50,9 @@ recentReadings = [1, 1, 1, 1, 1, 1, 1, 1]
 # --------------------------------------------
 
 # Begin!
-print ("Waiting 10 seconds for sensors to warm up...")
+print("Waiting 10 seconds for sensors to warm up...")
 time.sleep(10)
-print ("Program beginning...")
+print("Program beginning...")
 
 # Sync the time on this device to an internet time server
 try:
@@ -78,13 +63,10 @@ try:
     os.system('sudo service ntpd start')
 except:
     print('Error syncing time!')
-    
+
 # Initialize the sensor hat object
-<<<<<<< HEAD
 sense = sense_hat.SenseHat()
-=======
-sense = SenseHat()
->>>>>>> master
+
 print("Sensor hat initialized...")
 
 # Activate the compass, gyro, and accelerometer
@@ -99,13 +81,8 @@ print("This device is called: " + deviceName + "...")
 print("Data will be sent to " + targetURL + " every " + str(SAMPLE_INTERVAL_SECONDS) + " seconds...")
 
 while (True):
-
     # Get the current time
-<<<<<<< HEAD
     currentTime = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-=======
-    currentTime = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
->>>>>>> master
 
     # --------------------------------------------
 
@@ -121,7 +98,7 @@ while (True):
     accelerationx = 0
     accelerationy = 0
     accelerationz = 0
-    
+
     # Get environmental data
     try:
         humidityPercent = sense.get_humidity()
@@ -133,7 +110,7 @@ while (True):
         accelerationx, accelerationy, accelerationz = sense.get_accelerometer_raw().values()
     except:
         print("Error getting sensor data!")
-        
+
     # --------------------------------------------
 
     # Initialize position variables to 0
@@ -149,7 +126,7 @@ while (True):
         longitudeDegrees = jsonData['longitude']
     except:
         print("Error getting position!")
-    
+
     # --------------------------------------------
 
     # Append the most recent value to end of the recent values array
@@ -169,9 +146,8 @@ while (True):
         # since the LED display is mounted upside-down
         scaledRecentReadings.append(7 - scaledRecentReading)
 
-<<<<<<< HEAD
     # --------------------------------------------
-    
+
     # Test the hour of day; if it's too late or early, don't show the lights
     currentHour = datetime.datetime.now().hour
     if (NIGHT_MODE_ENABLED and ((currentHour > 22) or (currentHour < 7))):
@@ -197,28 +173,9 @@ while (True):
                     # Otherwise, by default, set this LED to the background color
                     sense.set_pixel(LEDcolumnIndex,LEDrowIndex,
                         DEFAULT_BACKGROUND_COLOR)
-=======
-    # Loop through the array, right to left (7 to 0);
-    # This lights up LEDs on the display one column at a time
-    for LEDcolumnIndex in range(7, -1, -1):
-        # Loop through all 8 LEDs in this column of LEDs
-        for LEDrowIndex in range(0, 8, 1):
-            # Determine the color for this LED by
-            # comparing the row (0-7) that this LED is in
-            # to the corresponding scaled recent reading
-            if LEDrowIndex >= scaledRecentReadings[LEDcolumnIndex]:
-                # In this case, the row number determines the LED color
-                # Higher row numbers will get "warmer" colors
-                sense.set_pixel(LEDcolumnIndex,LEDrowIndex,
-                    RED_TO_GREEN_COLOR_BAR[LEDrowIndex])
-            else :
-                # Otherwise, by default, set this LED to the background color
-                sense.set_pixel(LEDcolumnIndex,LEDrowIndex,
-                    DEFAULT_BACKGROUND_COLOR)
->>>>>>> master
-        
+
     # --------------------------------------------
-    
+
     # Compose the message in a form suitable for sending
     messageString = (
         deviceName + ":" + "Humidity," + currentTime + "," +  str(humidityPercent) + "\n" +
@@ -238,7 +195,7 @@ while (True):
     # Send the message to the target URL, using the specified creds,
     # containing the above message; use verify=False to allow
     # self-signed certificates, and use a timeout of 5 seconds
-    try: 
+    try:
         request = requests.put(targetURL,
             auth=(_u, _p),
             data=messageString,
@@ -247,9 +204,9 @@ while (True):
         # Notify the user if the request isn't successful
         if (request.status_code != 200):
              print("Error: web request did not return 200!")
-    except: 
+    except:
         print("An error ocurred during the web request: " + str(sys.exc_info()[0]))
-    
+
     # Sleep until the next loop
     time.sleep(SAMPLE_INTERVAL_SECONDS)
 
