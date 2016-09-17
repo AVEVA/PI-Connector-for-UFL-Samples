@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Start Python script
+Exec=lxterminal -e python "/home/pi/pi-connector-for-ufl-samples/Raspberry PI/SendSenseHatDataToPISystem.py"
+StartupNotify=false
