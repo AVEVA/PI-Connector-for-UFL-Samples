@@ -1,0 +1,673 @@
+{
+    "base": "stations",
+    "clouds": {
+        "all": 75
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472185519,
+    "id": 6077243,
+    "main": {
+        "humidity": 88,
+        "pressure": 1011,
+        "temp": 23.02,
+        "temp_max": 25.56,
+        "temp_min": 21.67
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0086,
+        "sunrise": 1472206191,
+        "sunset": 1472254907,
+        "type": 1
+    },
+    "visibility": 24140,
+    "weather": [
+        {
+            "description": "broken clouds",
+            "icon": "04n",
+            "id": 803,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 200,
+        "speed": 6.7
+    }
+}
+{
+    "base": "cmc stations",
+    "clouds": {
+        "all": 40
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472187184,
+    "id": 6077243,
+    "main": {
+        "humidity": 83,
+        "pressure": 1011,
+        "temp": 22.63,
+        "temp_max": 25.56,
+        "temp_min": 20
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0134,
+        "sunrise": 1472206155,
+        "sunset": 1472254904,
+        "type": 1
+    },
+    "weather": [
+        {
+            "description": "scattered clouds",
+            "icon": "03n",
+            "id": 802,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 220,
+        "gust": 7.7,
+        "speed": 3.1
+    }
+}
+{
+    "base": "stations",
+    "clouds": {
+        "all": 40
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472190544,
+    "id": 6077243,
+    "main": {
+        "humidity": 88,
+        "pressure": 1011,
+        "temp": 22.31,
+        "temp_max": 25.56,
+        "temp_min": 21
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0275,
+        "sunrise": 1472206158,
+        "sunset": 1472254901,
+        "type": 1
+    },
+    "visibility": 24140,
+    "weather": [
+        {
+            "description": "scattered clouds",
+            "icon": "03n",
+            "id": 802,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 230,
+        "speed": 3.1
+    }
+}
+{
+    "base": "stations",
+    "clouds": {
+        "all": 40
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472192584,
+    "id": 6077243,
+    "main": {
+        "humidity": 88,
+        "pressure": 1011,
+        "temp": 22.32,
+        "temp_max": 25.56,
+        "temp_min": 21
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0371,
+        "sunrise": 1472206160,
+        "sunset": 1472254898,
+        "type": 1
+    },
+    "visibility": 24140,
+    "weather": [
+        {
+            "description": "scattered clouds",
+            "icon": "03n",
+            "id": 802,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 230,
+        "speed": 3.1
+    }
+}
+{
+    "base": "stations",
+    "clouds": {
+        "all": 75
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472196274,
+    "id": 6077243,
+    "main": {
+        "humidity": 88,
+        "pressure": 1011,
+        "temp": 22.5,
+        "temp_max": 25.56,
+        "temp_min": 21
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0037,
+        "sunrise": 1472206191,
+        "sunset": 1472254907,
+        "type": 1
+    },
+    "visibility": 24140,
+    "weather": [
+        {
+            "description": "broken clouds",
+            "icon": "04n",
+            "id": 803,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 230,
+        "speed": 4.1
+    }
+}
+{
+    "base": "cmc stations",
+    "clouds": {
+        "all": 75
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472198164,
+    "id": 6077243,
+    "main": {
+        "humidity": 88,
+        "pressure": 1011,
+        "temp": 21.97,
+        "temp_max": 25.56,
+        "temp_min": 19
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0094,
+        "sunrise": 1472206164,
+        "sunset": 1472254891,
+        "type": 1
+    },
+    "weather": [
+        {
+            "description": "broken clouds",
+            "icon": "04n",
+            "id": 803,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 250,
+        "gust": 8.2,
+        "speed": 3.1
+    }
+}
+{
+    "base": "stations",
+    "clouds": {
+        "all": 75
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472201164,
+    "id": 6077243,
+    "main": {
+        "humidity": 88,
+        "pressure": 1011,
+        "temp": 22.42,
+        "temp_max": 25.56,
+        "temp_min": 21
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0279,
+        "sunrise": 1472206167,
+        "sunset": 1472254887,
+        "type": 1
+    },
+    "visibility": 24140,
+    "weather": [
+        {
+            "description": "broken clouds",
+            "icon": "04n",
+            "id": 803,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 240,
+        "speed": 3.1
+    }
+}
+{
+    "base": "stations",
+    "clouds": {
+        "all": 75
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472203654,
+    "id": 6077243,
+    "main": {
+        "humidity": 88,
+        "pressure": 1011,
+        "temp": 22.25,
+        "temp_max": 25.56,
+        "temp_min": 21
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0364,
+        "sunrise": 1472206169,
+        "sunset": 1472254884,
+        "type": 1
+    },
+    "visibility": 24140,
+    "weather": [
+        {
+            "description": "broken clouds",
+            "icon": "04n",
+            "id": 803,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 230,
+        "speed": 5.7
+    }
+}
+{
+    "base": "cmc stations",
+    "clouds": {
+        "all": 75
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472206084,
+    "id": 6077243,
+    "main": {
+        "humidity": 88,
+        "pressure": 1011,
+        "temp": 21.93,
+        "temp_max": 25.56,
+        "temp_min": 20
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0117,
+        "sunrise": 1472206171,
+        "sunset": 1472254881,
+        "type": 1
+    },
+    "weather": [
+        {
+            "description": "broken clouds",
+            "icon": "04n",
+            "id": 803,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 230,
+        "speed": 5.7
+    }
+}
+{
+    "base": "cmc stations",
+    "clouds": {
+        "all": 75
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472209819,
+    "id": 6077243,
+    "main": {
+        "humidity": 94,
+        "pressure": 1011,
+        "temp": 22.09,
+        "temp_max": 25.56,
+        "temp_min": 20
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0035,
+        "sunrise": 1472206174,
+        "sunset": 1472254877,
+        "type": 1
+    },
+    "weather": [
+        {
+            "description": "mist",
+            "icon": "50d",
+            "id": 701,
+            "main": "Mist"
+        }
+    ],
+    "wind": {
+        "deg": 230,
+        "speed": 4.1
+    }
+}
+{
+    "base": "cmc stations",
+    "clouds": {
+        "all": 40
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472212174,
+    "id": 6077243,
+    "main": {
+        "humidity": 88,
+        "pressure": 1012,
+        "temp": 22.37,
+        "temp_max": 25.56,
+        "temp_min": 20
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.003,
+        "sunrise": 1472206176,
+        "sunset": 1472254874,
+        "type": 1
+    },
+    "weather": [
+        {
+            "description": "fog",
+            "icon": "50d",
+            "id": 741,
+            "main": "Fog"
+        }
+    ],
+    "wind": {
+        "deg": 240,
+        "gust": 7.7,
+        "speed": 3.6
+    }
+}
+{
+    "base": "stations",
+    "clouds": {
+        "all": 40
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472215206,
+    "id": 6077243,
+    "main": {
+        "humidity": 94,
+        "pressure": 1013,
+        "temp": 24.16,
+        "temp_max": 26.11,
+        "temp_min": 22
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3831,
+        "message": 0.004,
+        "sunrise": 1472206191,
+        "sunset": 1472254907,
+        "type": 1
+    },
+    "visibility": 24140,
+    "weather": [
+        {
+            "description": "scattered clouds",
+            "icon": "03d",
+            "id": 802,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 260,
+        "speed": 2.6,
+        "var_beg": 200,
+        "var_end": 290
+    }
+}
+{
+    "base": "cmc stations",
+    "clouds": {
+        "all": 20
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472217533,
+    "id": 6077243,
+    "main": {
+        "humidity": 83,
+        "pressure": 1012,
+        "temp": 23.6,
+        "temp_max": 26.11,
+        "temp_min": 22
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0049,
+        "sunrise": 1472206180,
+        "sunset": 1472254867,
+        "type": 1
+    },
+    "weather": [
+        {
+            "description": "few clouds",
+            "icon": "02d",
+            "id": 801,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 240,
+        "speed": 4.1
+    }
+}
+{
+    "base": "stations",
+    "clouds": {
+        "all": 20
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472220064,
+    "id": 6077243,
+    "main": {
+        "humidity": 73,
+        "pressure": 1013,
+        "temp": 24.88,
+        "temp_max": 26.67,
+        "temp_min": 23
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0305,
+        "sunrise": 1472206183,
+        "sunset": 1472254863,
+        "type": 1
+    },
+    "visibility": 24140,
+    "weather": [
+        {
+            "description": "few clouds",
+            "icon": "02d",
+            "id": 801,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 260,
+        "gust": 9.8,
+        "speed": 5.1
+    }
+}
+{
+    "base": "cmc stations",
+    "clouds": {
+        "all": 20
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472220364,
+    "id": 6077243,
+    "main": {
+        "humidity": 73,
+        "pressure": 1013,
+        "temp": 24.63,
+        "temp_max": 26.67,
+        "temp_min": 23
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0156,
+        "sunrise": 1472206183,
+        "sunset": 1472254864,
+        "type": 1
+    },
+    "weather": [
+        {
+            "description": "few clouds",
+            "icon": "02d",
+            "id": 801,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 260,
+        "gust": 9.8,
+        "speed": 5.1
+    }
+}
+{
+    "base": "stations",
+    "clouds": {
+        "all": 20
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 45.51,
+        "lon": -73.59
+    },
+    "dt": 1472224084,
+    "id": 6077243,
+    "main": {
+        "humidity": 78,
+        "pressure": 1014,
+        "temp": 25.48,
+        "temp_max": 27.78,
+        "temp_min": 24
+    },
+    "name": "Montreal",
+    "sys": {
+        "country": "CA",
+        "id": 3829,
+        "message": 0.0081,
+        "sunrise": 1472206191,
+        "sunset": 1472254907,
+        "type": 1
+    },
+    "visibility": 48279,
+    "weather": [
+        {
+            "description": "few clouds",
+            "icon": "02d",
+            "id": 801,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 250,
+        "gust": 10.8,
+        "speed": 6.7
+    }
+}
