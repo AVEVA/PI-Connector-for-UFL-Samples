@@ -141,7 +141,12 @@ while (True):
     # and the range (max - min); values now range from 0 to 7
     scaledRecentReadings = []
     for i in range(0, len(recentReadings), 1):
-        scaledRecentReading = int(round(7 * abs(recentReadings[i] - minReading)/abs(maxReading - minReading)))
+        scaledRecentReading = 0
+        try:
+            scaledRecentReading = int(round(7 * abs(recentReadings[i] - minReading)/abs(maxReading - minReading)))
+        except:
+            print("Error when computing scaled reading; defaulting to 0")
+            
         # Subtract the scaled value from 7, to 'invert' the value,
         # since the LED display is mounted upside-down
         scaledRecentReadings.append(7 - scaledRecentReading)
