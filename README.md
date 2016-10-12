@@ -30,4 +30,3 @@ Copyright 2016 OSIsoft, LLC.
    limitations under the License.
    
 Please see the file named [LICENSE.md](LICENSE.md).
-

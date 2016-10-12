@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.8.2.7626" ExportMode="NoUniqueID" PISystem="COE-PHARMA-AF" Database="PharmaWeatherDemo" Description="Html Interface Models using USGS and National Weather Service Data" Created="2016-08-16T18:58:57.6215654Z" id="a1487564-b6ad-42ad-81e9-3b3a4ef2223f" ParentKey="a1d0d93e-6946-46b5-b5bf-cef2ed41d78e" ExportedObject="USGS_RiverDataTemplate" ExportedType="AFElementTemplate" Identity="ElementTemplate" PIPersist="213 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{53f1b63e-506e-4668-bce2-d21d7fcdc3a6}\ElementTemplates[{a1487564-b6ad-42ad-81e9-3b3a4ef2223f}]*COE-PHARMA-AF\PharmaWeatherDemo\ElementTemplates[USGS_RiverDataTemplate]">
+  <AFElementTemplate>
+    <Name>USGS_RiverDataTemplate</Name>
+    <Type>None</Type>
+    <InstanceType>Element</InstanceType>
+    <AllowElementToExtend>false</AllowElementToExtend>
+    <AFExtendedProperty>
+      <Name>Override</Name>
+      <Value type="AFElement">North Carolina\USGS\PIGEON RIVER NEAR HEPCO, NC</Value>
+    </AFExtendedProperty>
+    <AFAttributeTemplate>
+      <Name>Gage Height</Name>
+      <DefaultUOM>ft</DefaultUOM>
+      <Type>Single</Type>
+      <Value type="Single">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\USGS_%Element%.%Attribute%</ConfigString>
+      <AFAttributeCategoryRef>River Flow</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>iDay</Name>
+      <Type>Int32</Type>
+      <Value type="Int32">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\Weather.CALENDAR.DAY</ConfigString>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>iHour</Name>
+      <Type>Int32</Type>
+      <Value type="Int32">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\Weather.CALENDAR.HOUR</ConfigString>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>iMinute</Name>
+      <Type>Int32</Type>
+      <Value type="Int32">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\Weather.CALENDAR.MINUTE</ConfigString>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>MGD</Name>
+      <DefaultUOM>US Mgal</DefaultUOM>
+      <Type>Double</Type>
+      <Value type="Double">0</Value>
+      <DataReference>Formula</DataReference>
+      <ConfigString>A=RiverFlow_Dynamic_TimeRange;B=Total_Flow_Dynamic_TimeRange;C=Riverflow;[C * 7.48 * 86400];stepped=True;UOM=gal</ConfigString>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Riverflow</Name>
+      <DefaultUOM>aft3/s</DefaultUOM>
+      <Type>Single</Type>
+      <Value type="Single">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\USGS_%Element%.%Attribute%;UOM=aft3/s</ConfigString>
+      <AFAttributeCategoryRef>River Flow</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>RiverFlow_Dynamic_TimeRange</Name>
+      <Type>Double</Type>
+      <Value type="Double">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>|Riverflow;TimeMethod=TimeRange;RelativeTime=1;TimeRangeMethod=Delta</ConfigString>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Total_Flow_Dynamic_TimeRange</Name>
+      <Type>Double</Type>
+      <Value type="Double">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>|Riverflow;TimeMethod=TimeRange;RelativeTime=1;TimeRangeMethod=Total;UOM=aft3;RateConversion=s</ConfigString>
+    </AFAttributeTemplate>
+    <AFAnalysisTemplate>
+      <Name>DailyRiverEvents</Name>
+      <Target>USGS_RiverDataTemplate</Target>
+      <AFAnalysisCategoryRef>DailyRiverStatistics</AFAnalysisCategoryRef>
+      <AFAnalysisRule>
+        <AFPlugIn>EventFrame</AFPlugIn>
+        <ConfigString>EFTGUID=eec493a5-acb6-4caf-af13-bfc4d9a206b2;EFTNAME=RiverDay</ConfigString>
+        <AFAnalysisRule>
+          <AFPlugIn>PerformanceEquation</AFPlugIn>
+          <ConfigString>StartTrigger := If DaySec('*') &lt;= 85799 then 1 else 0;&#xD;
+EndTrigger := If Right(String(FindGE('iHour','*',bod('y'),0)),11) = "12:00:00 AM" Then 1 Else 0;</ConfigString>
+        </AFAnalysisRule>
+        <AFAnalysisRule>
+          <AFPlugIn>TimeTrue</AFPlugIn>
+          <ConfigString>TimeTrueValue=3600</ConfigString>
+        </AFAnalysisRule>
+      </AFAnalysisRule>
+      <AFTimeRule>
+        <AFPlugIn>Natural</AFPlugIn>
+      </AFTimeRule>
+    </AFAnalysisTemplate>
+  </AFElementTemplate>
+</AF>

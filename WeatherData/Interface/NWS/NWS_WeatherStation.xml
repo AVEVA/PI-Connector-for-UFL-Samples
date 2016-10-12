@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.8.2.7626" ExportMode="NoUniqueID" PISystem="COE-PHARMA-AF" Database="PharmaWeatherDemo" Description="Html Interface Models using USGS and National Weather Service Data" Created="2016-08-16T18:58:29.8802584Z" id="4ca02508-a85b-4ec8-aceb-1c312cd85cdc" ParentKey="a1d0d93e-6946-46b5-b5bf-cef2ed41d78e" ExportedObject="NWS_WeatherStation" ExportedType="AFElementTemplate" Identity="ElementTemplate" PIPersist="209 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{53f1b63e-506e-4668-bce2-d21d7fcdc3a6}\ElementTemplates[{4ca02508-a85b-4ec8-aceb-1c312cd85cdc}]*COE-PHARMA-AF\PharmaWeatherDemo\ElementTemplates[NWS_WeatherStation]">
+  <AFElementTemplate>
+    <Name>NWS_WeatherStation</Name>
+    <Type>None</Type>
+    <InstanceType>Element</InstanceType>
+    <AllowElementToExtend>false</AllowElementToExtend>
+    <AFExtendedProperty>
+      <Name>Override</Name>
+      <Value />
+    </AFExtendedProperty>
+    <AFElementCategoryRef>Weather</AFElementCategoryRef>
+    <AFAttributeTemplate>
+      <Name>1HrPrecipitation</Name>
+      <Description>1hr Precipitation</Description>
+      <DefaultUOM>in</DefaultUOM>
+      <Type>Double</Type>
+      <Value type="Double">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\%Element%.%Attribute%</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>24HrPrecipitation</Name>
+      <Description>24 Hr Station Precipitation</Description>
+      <DefaultUOM>in</DefaultUOM>
+      <Type>Double</Type>
+      <Value type="Double">0</Value>
+      <DataReference>PI Point</DataReference>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>AllWeatherDataAttributes</Name>
+      <Type>String</Type>
+      <Value type="String">0</Value>
+      <DataReference>String Builder</DataReference>
+      <ConfigString>http://coe-pharma-cs.osisoft.int/Coresight/#/Displays/AdHoc?DataItems=;"\\";"%System%";"\";"%Database%";"\";"%ElementPath%"</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Coresight_ERD_URL</Name>
+      <Type>String</Type>
+      <Value type="String">0</Value>
+      <DataReference>String Builder</DataReference>
+      <ConfigString>http://coe-pharma-cs.osisoft.int/Coresight/#/PBDisplays/12?CurrentElement=;"\\";"%System%";"\";"%Database%";"\";"%ElementPath%"&#xD;
+</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>CoresightTrendTemperature</Name>
+      <Type>String</Type>
+      <Value type="String">0</Value>
+      <DataReference>String Builder</DataReference>
+      <ConfigString>http://coe-pharma-cs.osisoft.int/Coresight/#/Displays/AdHoc?DataItems=;"\\";"%System%";"\";"%Database%";"\";"%ElementPath%";"|";"Temperature&amp;StartTime=*-60d&amp;EndTime=*";</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>CoresightTrendWindSpeed</Name>
+      <Type>String</Type>
+      <Value type="String">0</Value>
+      <DataReference>String Builder</DataReference>
+      <ConfigString>http://coe-pharma-cs.osisoft.int/Coresight/#/Displays/AdHoc?DataItems=;"\\";"%System%";"\";"%Database%";"\";"%ElementPath%";"|";"Wind Speed";</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Direction</Name>
+      <Type>String</Type>
+      <Value type="String">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\NWS_%@|StationTag%_WindDir</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>iDay</Name>
+      <Type>Int32</Type>
+      <Value type="Int32">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\Weather.CALENDAR.DAY</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>iHour</Name>
+      <Type>Int32</Type>
+      <Value type="Int32">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\Weather.CALENDAR.HOUR</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>iMinute</Name>
+      <Type>Int32</Type>
+      <Value type="Int32">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\Weather.CALENDAR.MINUTE</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Latitude</Name>
+      <Type>Double</Type>
+      <Value type="Double">40.45</Value>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Longitude</Name>
+      <Type>Double</Type>
+      <Value type="Double">-105.01667</Value>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Pressure</Name>
+      <DefaultUOM>inHg</DefaultUOM>
+      <Type>Double</Type>
+      <Value type="Double">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\NWS_%@|StationTag%_PressureIn</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Relative Humidity</Name>
+      <DefaultUOM>%</DefaultUOM>
+      <Type>Double</Type>
+      <Value type="Double">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\NWS_%@|StationTag%_Relative_Humidity</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Shift</Name>
+      <Type>String</Type>
+      <Value type="String">0</Value>
+      <DataReference>Table Lookup</DataReference>
+      <ConfigString>SELECT ShiftName FROM ManufacturingShifts WHERE ShiftID = 1</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>StationTag</Name>
+      <Description>Weather Station Tag i.e. KTRK</Description>
+      <Type>String</Type>
+      <Value type="String"></Value>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Temperature</Name>
+      <DefaultUOM>deg F</DefaultUOM>
+      <Type>Single</Type>
+      <Value type="Single">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\NWS_%@|StationTag%_Temp</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Temperature_Max</Name>
+      <Type>Double</Type>
+      <Value type="Double">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>|Temperature;TimeMethod=TimeRange;RelativeTime=-1d;TimeRangeMethod=Maximum</ConfigString>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Temperature_Min</Name>
+      <Type>Double</Type>
+      <Value type="Double">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>|Temperature;TimeMethod=TimeRange;RelativeTime=-1d;TimeRangeMethod=Minimum</ConfigString>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>WeatherStationDescription</Name>
+      <Type>String</Type>
+      <Value type="String">0</Value>
+      <DataReference>String Builder</DataReference>
+      <ConfigString>"%ElementDescription%";</ConfigString>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Wind Speed</Name>
+      <DefaultUOM>mph</DefaultUOM>
+      <Type>Double</Type>
+      <Value type="Double">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\%Server%\NWS_%@|StationTag%_WindSpeed</ConfigString>
+      <AFAttributeCategoryRef>Weather</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAnalysisTemplate>
+      <Name>CalanderDay_Weather</Name>
+      <Target>NWS_WeatherStation</Target>
+      <AFAnalysisCategoryRef>DailyWeather</AFAnalysisCategoryRef>
+      <AFAnalysisRule>
+        <AFPlugIn>EventFrame</AFPlugIn>
+        <ConfigString>EFTGUID=09862aec-c452-4c5a-92a1-62b3d4ad07de;EFTNAME=WeatherDay</ConfigString>
+        <AFAnalysisRule>
+          <AFPlugIn>PerformanceEquation</AFPlugIn>
+          <ConfigString>StartTrigger := If DaySec('*') &lt;= 85799 then 1 else 0;&#xD;
+EndTrigger := If Right(String(FindGE('{644d180b-057e-4c44-8668-2377365dfadd};iHour','*',bod('y'),0)),11) = "12:00:00 AM" Then 1 Else 0;</ConfigString>
+        </AFAnalysisRule>
+        <AFAnalysisRule>
+          <AFPlugIn>TimeTrue</AFPlugIn>
+          <ConfigString>TimeTrueValue=1</ConfigString>
+        </AFAnalysisRule>
+      </AFAnalysisRule>
+      <AFTimeRule>
+        <AFPlugIn>Natural</AFPlugIn>
+      </AFTimeRule>
+    </AFAnalysisTemplate>
+  </AFElementTemplate>
+</AF>
