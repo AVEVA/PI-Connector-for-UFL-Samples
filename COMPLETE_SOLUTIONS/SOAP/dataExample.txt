@@ -1,0 +1,12 @@
+<CurrentWeather>
+  <Location>SAN FRANCISCO INTERNATIONAL  AIRPORT , CA, United States (KSFO) 37-37N 122-22W 26M</Location>
+  <Time>Mar 22, 2016 - 12:56 PM EDT / 2016.03.22 2256 UTC</Time>
+  <Wind> Calm:1</Wind>
+  <Visibility> 10 mile(s):0</Visibility>
+  <SkyConditions> clear</SkyConditions>
+  <Temperature> 64.4 F (18.0 C)</Temperature>
+  <DewPoint> 55.9 F (13.3 C)</DewPoint>
+  <RelativeHumidity> 89%</RelativeHumidity>
+  <Pressure> 29.96 in. Hg (1014 hPa)</Pressure>
+  <Status>Success</Status>
+</CurrentWeather>

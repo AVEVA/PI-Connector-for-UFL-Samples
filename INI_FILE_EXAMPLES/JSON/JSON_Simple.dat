@@ -1,0 +1,11 @@
+{
+    "SITE01":{
+        "DEVICE01":{
+            "Watchdog":{
+                "Watchdog1": 1234,
+                "Watchdog2": 45,
+                "Watchdog3": 678
+            }
+        }
+    }
+}

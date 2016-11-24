@@ -1,0 +1,37 @@
+{
+    "LB1":{
+        "HMI":{
+            "Channel":{
+                "CH01":[
+                    {"id": "SN", "value": "1000813"},
+                    {"id": "A", "value": 0},
+                    {"id": "B", "value": 10000},    
+                    {"id": "C", "value": 100},
+                    {"id": "D", "value": 0},
+                    {"id": "Scaling_Type", "value": 0}                
+                ],"CH02":[
+                    {"id": "SN", "value": "1000814"},
+                    {"id": "A", "value": 0},
+                    {"id": "B", "value": 10000},    
+                    {"id": "C", "value": 100},
+                    {"id": "D", "value": 0},
+                    {"id": "Scaling_Type", "value": 0}                
+                ],"CH03":[
+                    {"id": "SN", "value": "1000815"},
+                    {"id": "A", "value": 0},
+                    {"id": "B", "value": 10000},    
+                    {"id": "C", "value": 100},
+                    {"id": "D", "value": 0},
+                    {"id": "Scaling_Type", "value": 0}                    
+                ],"CH04":[
+                    {"id": "SN", "value": "1000816"},
+                    {"id": "A", "value": 0},
+                    {"id": "B", "value": 10000},    
+                    {"id": "C", "value": 100},
+                    {"id": "D", "value": 0},
+                    {"id": "Scaling_Type", "value": 0}                    
+                ]
+            }
+        }
+    }
+}
