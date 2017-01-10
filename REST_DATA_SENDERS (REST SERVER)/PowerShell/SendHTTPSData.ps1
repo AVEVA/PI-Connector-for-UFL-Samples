@@ -1,5 +1,5 @@
 #*********************************************************************************
-# Copyright © 2015 OSIsoft, LLC All rights reserved.
+# Copyright © 2016-2017 OSIsoft, LLC All rights reserved.
 # THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION AND TRADE SECRETS OF
 # OSIsoft, LLC  USE, DISCLOSURE, OR REPRODUCTION IS PROHIBITED WITHOUT
 # THE PRIOR EXPRESSED WRITTEN PERMISSION OF OSIsoft, LLC
@@ -8,8 +8,9 @@
 # as set forth in subparagraph (c)(1)(ii) of the Rights in Technical Data and
 # Computer Software clause at DFARS 252.227.7013
 # OSIsoft, LLC
-# 777 Davis Street, Suite 250, San Leandro CA 94577
+# 1600 Alvarado Street, San Leandro CA 94577
 #*********************************************************************************
+
 
 # =========================================================================================================================================================================================================
 # Process script parameters
@@ -49,6 +50,23 @@ Function Print-Help{
 	"
 
     write-host
+}
+
+Function Send-Data{
+    Try{
+	    write-host "****** Sending data to the $URL endpoint *****" -ForegroundColor Green
+	    $result = Invoke-RestMethod -Method PUT -Uri "$URL" -Body $dataBytes -Headers $Headers
+	    write-host "****** Success: $result ******" -ForegroundColor Green
+        return $true
+    }Catch
+    {
+        Write-Host "StatusCode:" $_.Exception.Response.StatusCode.value__ -ForegroundColor Red
+	    write-host "****** Sending data failed. Reason: $_ ******" -ForegroundColor Red
+        return $false
+    }
+    write-host
+    Send-Data
+    # Read-Host -Prompt "Press Enter to exit..."
 }
 
 
@@ -92,8 +110,8 @@ add-type @"
 		}
 	}
 "@
-[System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
 
+[System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
 $dataBytes = [System.Text.Encoding]::UTF8.GetBytes($Data)   
 
 If (![string]::IsNullOrEmpty($Password))
@@ -112,13 +130,9 @@ If (![string]::IsNullOrEmpty($Password))
 		Authorization = $basicAuthValue
 	}
 }
-Try{
-	write-host "****** Sending data to the $URL endpoint *****" -ForegroundColor Green
-	$result = Invoke-RestMethod -Method PUT -Uri "$URL" -Body $dataBytes -Headers $Headers
-	write-host "****** Success: $result ******" -ForegroundColor Green
-}Catch
-{
-	write-host "****** Sending data failed. Reason: $_ ******" -ForegroundColor Red
-}
-write-host
-Read-Host -Prompt "Press Enter to exit..."
+
+# The script keeps sending data every 500ms until success
+Do {
+	 $res = Send-Data
+	 Start-Sleep -m 500 
+	} while($res -eq $false)
