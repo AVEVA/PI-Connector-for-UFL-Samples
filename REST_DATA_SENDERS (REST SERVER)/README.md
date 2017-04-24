@@ -1,12 +1,12 @@
-# PI-Connector-for-UFL-Samples
+# PI-Connector-for-UFL-Samples -- REST_DATA_SENDERS(REST SERVER)
 
-These samples show how to get started with the PI Connector for UFL.
+These samples show how to send data to the PI Connector for UFL REST endpoint in different programming languages
 
 ## Contents
 
-* INI file examples for different kinds of data files
-* Scripts for sending data to the PI Connector for UFL REST endpoint in different programming languages
-* Complete solutions (INI configuration files and scripts for gathering the data from different systems)
+* C# application code 
+* PowerShell script
+* Python script
 
 ## Getting Started
 
