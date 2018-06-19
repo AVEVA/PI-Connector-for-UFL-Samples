@@ -1,6 +1,6 @@
 # PI-Connector-for-UFL-Samples -- INI_FILE_EXAMPLES
 
-These samples show how to create and INI configuration file for diffrents kinds of data. Every example is set of three files:
+These samples show how to create an INI configuration file for different kinds of data. Every example is set of three files:
 
 * INI configuration file (including comments)
 * Data file (you can use this file as a source of data during the test)
@@ -11,13 +11,14 @@ These samples show how to create and INI configuration file for diffrents kinds 
 * Example2 - Line data with hardcoded columns, SECONDS_GMT + miliseconds
 * Example3 - Structured matrix, bad data handling, ISNUMBER() function
 * Example4 - Structured matrix with tagnames in multiple rows, combination of DATE and TIME
-* Example5 - Multiple columns with varying number of columns, modifying the whole MESSAGE
+* Example5 - Multiple columns with the varying number of columns, modifying the whole MESSAGE
 * Example6 - Simple time series with AF Elements (static and dynamic attributtes)
 * Example7 - Simple time series with AF Elements created by connector in advance
 * Example8 - Process XML data into timeseries
 * Example9 - Process XML data into timeseries and AF Elements
 * Example10 - Process XML data into timeseries, AF Elements and conditional Event Frames
 * Example11 - Adjusting Timestamp based on timezone information
+* Example12 - Collecting metadata information from the source
 
 ## Getting Started
 
@@ -26,7 +27,7 @@ The UFL connector will automatically create tags and elements, thus care must be
 
 ## Licensing
 
-Copyright 2016 OSIsoft, LLC.
+Copyright 2018 OSIsoft, LLC.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
